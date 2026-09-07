@@ -1,0 +1,30 @@
+===== Scala Essentials - Day 1 =====
+College: ABC College
+Total students: 4
+Student Grade Processor Started
+
+--- Students and Grades ---
+Teju -> Marks: 85 -> Grade: B
+Ravi -> Marks: 72 -> Grade: C
+Anu -> Marks: 91 -> Grade: A
+Kiran -> Marks: 64 -> Grade: D
+
+--- Vector ---
+Vector(Teju, Ravi, Anu, Kiran)
+
+--- Set ---
+Set(CSE, ECE, IT)
+
+--- Map ---
+Map(Scala -> 85, Spark -> 90, Git -> 80)
+
+--- Students who scored 80 or above ---
+Teju -> 85
+Anu -> 91
+
+--- Average Marks ---
+Average marks: 78.0
+
+--- Logger Demo ---
+[STUDENT] Student grade processed
+[ADMIN] Grade report generated
