@@ -1,0 +1,38 @@
+Original Sales:
+List(100, 250, 150, 300, 200)
+
+Sales after adding 50:
+List(150, 300, 200, 350, 250)
+
+Sales >= 200:
+List(250, 300, 200)
+
+Flattened Sales:
+List(100, 200, 300, 400, 500)
+
+Total Sales:
+1000
+
+Customer Records:
+Vector(Ravi, Priya, Vignesh, Teju, Anil)
+
+Customer at index 2:
+Vignesh
+
+Product Quantities:
+Map(Laptop -> 2, Mobile -> 5, Headphones -> 10, Keyboard -> 4)
+
+Product Prices:
+Map(Laptop -> 60000, Mobile -> 25000, Headphones -> 2000, Keyboard -> 1500)
+
+Product Revenue:
+Map(Laptop -> 120000, Mobile -> 125000, Headphones -> 20000, Keyboard -> 6000)
+
+Customer Order Summary:
+(Ravi,Laptop,60000)
+(Priya,Mobile,25000)
+(Vignesh,Headphones,2000)
+
+Daily Sales Summary:
+Total Revenue: ₹271000
+Total Items Sold: 21
