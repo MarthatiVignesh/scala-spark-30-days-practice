@@ -1,0 +1,25 @@
+DAY 3 - SPARK SETUP TEST RESULTS
+
+Environment:
+Spark Version: 3.5.3
+Scala Version: 2.12.18
+Java Version: 17.0.20
+
+TEST 1 - local[2]
+Master: local[2]
+Default Parallelism: 2
+Number of Lines: 5
+Application Status: SUCCESS
+
+TEST 2 - local[4]
+Master: local[4]
+Default Parallelism: 4
+Number of Lines: 5
+Application Status: SUCCESS
+
+Spark Architecture:
+Driver: Coordinates the Spark application.
+Executor: Performs tasks and stores data.
+Cluster Manager: Allocates resources to Spark applications.
+
+Application completed successfully.

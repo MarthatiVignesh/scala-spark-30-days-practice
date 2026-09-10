@@ -1,0 +1,5 @@
+Apache Spark is a fast distributed processing engine.
+Spark supports batch processing and streaming.
+Scala is commonly used with Apache Spark.
+Spark applications run using drivers and executors.
+RDDs are a fundamental Spark abstraction.
