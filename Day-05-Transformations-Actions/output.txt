@@ -1,0 +1,104 @@
+[info] running (fork) Day05TransformationsActions 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/16 14:38:17 INFO SparkContext: Running Spark version 3.5.3
+26/09/16 14:38:17 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/16 14:38:17 INFO SparkContext: Java version 17.0.20
+26/09/16 14:38:17 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/16 14:38:18 INFO ResourceUtils: ==============================================================
+26/09/16 14:38:18 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/16 14:38:18 INFO ResourceUtils: ==============================================================
+26/09/16 14:38:18 INFO SparkContext: Submitted application: Day 5 - Transformations and Actions
+26/09/16 14:38:18 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/16 14:38:18 INFO ResourceProfile: Limiting resource is cpu
+26/09/16 14:38:18 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/16 14:38:18 INFO SecurityManager: Changing view acls to: sri
+26/09/16 14:38:18 INFO SecurityManager: Changing modify acls to: sri
+26/09/16 14:38:18 INFO SecurityManager: Changing view acls groups to: 
+26/09/16 14:38:18 INFO SecurityManager: Changing modify acls groups to: 
+26/09/16 14:38:18 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: sri; groups with view permissions: EMPTY; users with modify permissions: sri; groups with modify permissions: EMPTY
+26/09/16 14:38:18 INFO Utils: Successfully started service 'sparkDriver' on port 34953.
+26/09/16 14:38:18 INFO SparkEnv: Registering MapOutputTracker
+26/09/16 14:38:18 INFO SparkEnv: Registering BlockManagerMaster
+26/09/16 14:38:18 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/16 14:38:18 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/16 14:38:18 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/16 14:38:18 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-2b53c794-e695-4376-9d80-333708874df2
+26/09/16 14:38:18 INFO MemoryStore: MemoryStore started with capacity 987.6 MiB
+26/09/16 14:38:18 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/16 14:38:18 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+26/09/16 14:38:18 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/16 14:38:19 INFO Executor: Starting executor ID driver on host localhost
+26/09/16 14:38:19 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/16 14:38:19 INFO Executor: Java version 17.0.20
+26/09/16 14:38:19 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/09/16 14:38:19 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@d5d5353 for default.
+26/09/16 14:38:19 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 44835.
+26/09/16 14:38:19 INFO NettyBlockTransferService: Server created on localhost:44835
+26/09/16 14:38:19 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/16 14:38:19 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, localhost, 44835, None)
+26/09/16 14:38:19 INFO BlockManagerMasterEndpoint: Registering block manager localhost:44835 with 987.6 MiB RAM, BlockManagerId(driver, localhost, 44835, None)
+26/09/16 14:38:19 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, localhost, 44835, None)
+26/09/16 14:38:19 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, localhost, 44835, None)
+==============================================
+Day 5 - Transformations and Actions
+==============================================
+
+Original RDD:
+1, 2, 3, 4, 5, 5
+
+map - Doubled values:
+2, 4, 6, 8, 10, 10
+
+filter - Values >= 4:
+4, 5, 5
+
+flatMap - Words:
+Apache, Spark, Scala, Spark, RDD, Practice
+
+distinct - Unique values:
+1, 2, 3, 4, 5
+
+union - Combined RDD:
+10, 20, 30, 40, 50, 60
+
+Actions:
+count  = 6
+first  = 1
+take(3) = 1, 2, 3
+reduce = 20
+
+==============================================
+Log Analyzer
+==============================================
+Total log lines: 10
+
+ERROR messages:
+ERROR Database connection failed
+ERROR File not found
+ERROR Database connection failed
+ERROR Network timeout
+
+Total ERROR messages: 4
+
+==============================================
+Transformation and Action Summary
+==============================================
+Transformations:
+1. map
+2. filter
+3. flatMap
+4. distinct
+5. union
+
+Actions:
+1. count
+2. collect
+3. first
+4. take
+5. reduce
+
+Lazy transformations are executed when an action is called.
+
+Day 5 completed successfully!
+[success] elapsed time: 6 s
+[0J

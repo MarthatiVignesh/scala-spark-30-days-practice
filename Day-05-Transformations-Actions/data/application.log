@@ -1,0 +1,10 @@
+INFO Application started
+INFO User logged in
+ERROR Database connection failed
+INFO Processing request
+ERROR File not found
+WARN Slow response
+ERROR Database connection failed
+INFO User logged out
+INFO Application stopped
+ERROR Network timeout
