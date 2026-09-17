@@ -1,0 +1,5 @@
+P001,Laptop,Electronics
+P002,Mobile,Electronics
+P003,Keyboard,Accessories
+P004,Mouse,Accessories
+P005,Monitor,Electronics

@@ -1,0 +1,109 @@
+[info] running (fork) Day11BroadcastAccumulators 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/17 12:33:23 INFO SparkContext: Running Spark version 3.5.3
+26/09/17 12:33:23 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/17 12:33:23 INFO SparkContext: Java version 17.0.20
+26/09/17 12:33:23 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/17 12:33:23 INFO ResourceUtils: ==============================================================
+26/09/17 12:33:23 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/17 12:33:23 INFO ResourceUtils: ==============================================================
+26/09/17 12:33:23 INFO SparkContext: Submitted application: Day 11 - Broadcast and Accumulators
+26/09/17 12:33:23 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/17 12:33:23 INFO ResourceProfile: Limiting resource is cpu
+26/09/17 12:33:23 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/17 12:33:23 INFO SecurityManager: Changing view acls to: sri
+26/09/17 12:33:23 INFO SecurityManager: Changing modify acls to: sri
+26/09/17 12:33:23 INFO SecurityManager: Changing view acls groups to: 
+26/09/17 12:33:23 INFO SecurityManager: Changing modify acls groups to: 
+26/09/17 12:33:23 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: sri; groups with view permissions: EMPTY; users with modify permissions: sri; groups with modify permissions: EMPTY
+26/09/17 12:33:24 INFO Utils: Successfully started service 'sparkDriver' on port 39533.
+26/09/17 12:33:24 INFO SparkEnv: Registering MapOutputTracker
+26/09/17 12:33:24 INFO SparkEnv: Registering BlockManagerMaster
+26/09/17 12:33:24 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/17 12:33:24 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/17 12:33:24 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/17 12:33:24 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-774decf8-ce80-4d85-857b-5d23c88ba22a
+26/09/17 12:33:24 INFO MemoryStore: MemoryStore started with capacity 987.6 MiB
+26/09/17 12:33:24 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/17 12:33:24 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+26/09/17 12:33:24 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/17 12:33:24 INFO Executor: Starting executor ID driver on host localhost
+26/09/17 12:33:24 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/17 12:33:24 INFO Executor: Java version 17.0.20
+26/09/17 12:33:24 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/09/17 12:33:24 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@d5d5353 for default.
+26/09/17 12:33:24 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 36539.
+26/09/17 12:33:24 INFO NettyBlockTransferService: Server created on localhost:36539
+26/09/17 12:33:24 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/17 12:33:24 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, localhost, 36539, None)
+26/09/17 12:33:24 INFO BlockManagerMasterEndpoint: Registering block manager localhost:36539 with 987.6 MiB RAM, BlockManagerId(driver, localhost, 36539, None)
+26/09/17 12:33:24 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, localhost, 36539, None)
+26/09/17 12:33:24 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, localhost, 36539, None)
+============================================================
+DAY 11 - BROADCAST AND ACCUMULATORS
+============================================================
+
+1. PRODUCT MASTER DATA
+P001 -> Laptop -> Electronics
+P002 -> Mobile -> Electronics
+P003 -> Keyboard -> Accessories
+P004 -> Mouse -> Accessories
+P005 -> Monitor -> Electronics
+
+2. BROADCAST VARIABLE
+Product master map has been broadcast to executors.
+Broadcast records: 5
+
+3. TRANSACTION VALIDATION
+VALID,T001,P001,Laptop,Electronics,₹120000.0
+VALID,T002,P002,Mobile,Electronics,₹75000.0
+VALID,T003,P003,Keyboard,Accessories,₹6000.0
+INVALID,T004,P999,Unknown Product,Unknown,₹5000.0
+VALID,T005,P001,Laptop,Electronics,₹90000.0
+VALID,T006,P004,Mouse,Accessories,₹3000.0
+VALID,T007,P002,Mobile,Electronics,₹50000.0
+INVALID,T008,P888,Unknown Product,Unknown,₹4500.0
+VALID,T009,P005,Monitor,Electronics,₹45000.0
+VALID,T010,P003,Keyboard,Accessories,₹7000.0
+
+4. ACCUMULATOR RESULT
+Bad records found: 2
+
+5. VALID TRANSACTIONS
+VALID,T001,P001,Laptop,Electronics,₹120000.0
+VALID,T002,P002,Mobile,Electronics,₹75000.0
+VALID,T003,P003,Keyboard,Accessories,₹6000.0
+VALID,T005,P001,Laptop,Electronics,₹90000.0
+VALID,T006,P004,Mouse,Accessories,₹3000.0
+VALID,T007,P002,Mobile,Electronics,₹50000.0
+VALID,T009,P005,Monitor,Electronics,₹45000.0
+VALID,T010,P003,Keyboard,Accessories,₹7000.0
+
+6. INVALID TRANSACTIONS
+INVALID,T004,P999,Unknown Product,Unknown,₹5000.0
+INVALID,T008,P888,Unknown Product,Unknown,₹4500.0
+
+7. VALID REVENUE BY DEPARTMENT
+Accessories     ₹16000.00
+Electronics     ₹380000.00
+
+8. WHY NOT USE A NORMAL DRIVER VARIABLE?
+A normal driver variable is local to the driver.
+Executors process data independently on distributed tasks.
+Updates made by executors to a normal driver variable
+are not reliably sent back to the driver.
+Spark accumulators are designed for distributed counters.
+
+9. SUMMARY
+Total transactions: 10
+Valid transactions: 8
+Bad records: 2
+Broadcast: Product master reference data
+Accumulator: Counted invalid transactions
+RDD cache: Prevented repeated accumulator updates
+
+============================================================
+DAY 11 COMPLETED SUCCESSFULLY
+============================================================
+[success] elapsed time: 5 s
+[0J
