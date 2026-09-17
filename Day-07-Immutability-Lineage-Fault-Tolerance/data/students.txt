@@ -1,0 +1,10 @@
+Teju,85
+Ravi,72
+Anu,91
+Kiran,64
+Priya,78
+Manoj,88
+Sneha,95
+Arjun,69
+Varun,82
+Divya,58

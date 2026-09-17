@@ -1,0 +1,132 @@
+[info] running (fork) Day07ImmutabilityLineage 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/17 10:48:41 INFO SparkContext: Running Spark version 3.5.3
+26/09/17 10:48:41 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/17 10:48:41 INFO SparkContext: Java version 17.0.20
+26/09/17 10:48:41 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/17 10:48:41 INFO ResourceUtils: ==============================================================
+26/09/17 10:48:41 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/17 10:48:41 INFO ResourceUtils: ==============================================================
+26/09/17 10:48:41 INFO SparkContext: Submitted application: Day 7 - Immutability, Lineage and Fault Tolerance
+26/09/17 10:48:41 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/17 10:48:41 INFO ResourceProfile: Limiting resource is cpu
+26/09/17 10:48:41 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/17 10:48:41 INFO SecurityManager: Changing view acls to: sri
+26/09/17 10:48:41 INFO SecurityManager: Changing modify acls to: sri
+26/09/17 10:48:41 INFO SecurityManager: Changing view acls groups to: 
+26/09/17 10:48:41 INFO SecurityManager: Changing modify acls groups to: 
+26/09/17 10:48:41 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: sri; groups with view permissions: EMPTY; users with modify permissions: sri; groups with modify permissions: EMPTY
+26/09/17 10:48:41 INFO Utils: Successfully started service 'sparkDriver' on port 42429.
+26/09/17 10:48:41 INFO SparkEnv: Registering MapOutputTracker
+26/09/17 10:48:41 INFO SparkEnv: Registering BlockManagerMaster
+26/09/17 10:48:41 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/17 10:48:41 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/17 10:48:41 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/17 10:48:41 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-90f40244-ba35-44f0-89af-387add95d851
+26/09/17 10:48:41 INFO MemoryStore: MemoryStore started with capacity 987.6 MiB
+26/09/17 10:48:41 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/17 10:48:42 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+26/09/17 10:48:42 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/17 10:48:42 INFO Executor: Starting executor ID driver on host localhost
+26/09/17 10:48:42 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/17 10:48:42 INFO Executor: Java version 17.0.20
+26/09/17 10:48:42 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/09/17 10:48:42 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@5d2828c9 for default.
+26/09/17 10:48:42 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 33299.
+26/09/17 10:48:42 INFO NettyBlockTransferService: Server created on localhost:33299
+26/09/17 10:48:42 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/17 10:48:42 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, localhost, 33299, None)
+26/09/17 10:48:42 INFO BlockManagerMasterEndpoint: Registering block manager localhost:33299 with 987.6 MiB RAM, BlockManagerId(driver, localhost, 33299, None)
+26/09/17 10:48:42 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, localhost, 33299, None)
+26/09/17 10:48:42 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, localhost, 33299, None)
+====================================================
+Day 7 - Immutability, Lineage and Fault Tolerance
+====================================================
+
+Original RDD:
+Teju,85
+Ravi,72
+Anu,91
+Kiran,64
+Priya,78
+Manoj,88
+Sneha,95
+Arjun,69
+Varun,82
+Divya,58
+
+Final RDD after transformations:
+Sneha -> 100
+Anu -> 96
+Manoj -> 93
+Teju -> 90
+Varun -> 87
+
+Total students:
+10
+
+====================================================
+RDD Lineage
+====================================================
+students
+   |
+   | filter(marks >= 70)
+   v
+passedStudents
+   |
+   | map(name, marks)
+   v
+studentMarks
+   |
+   | filter(marks >= 80)
+   v
+highScorers
+   |
+   | map(add 5 bonus marks)
+   v
+bonusMarks
+   |
+   | collect()
+   v
+Final Result
+
+====================================================
+Spark RDD Lineage Information
+====================================================
+(2) MapPartitionsRDD[5] at map at Day07ImmutabilityLineage.scala:42 []
+ |  MapPartitionsRDD[4] at filter at Day07ImmutabilityLineage.scala:38 []
+ |  MapPartitionsRDD[3] at map at Day07ImmutabilityLineage.scala:31 []
+ |  MapPartitionsRDD[2] at filter at Day07ImmutabilityLineage.scala:27 []
+ |  data/students.txt MapPartitionsRDD[1] at textFile at Day07ImmutabilityLineage.scala:20 []
+ |  data/students.txt HadoopRDD[0] at textFile at Day07ImmutabilityLineage.scala:20 []
+
+====================================================
+RDD Immutability
+====================================================
+RDDs are immutable.
+Transformations never modify the original RDD.
+Each transformation creates a new RDD.
+Example: students remains unchanged after filter().
+
+====================================================
+Fault Tolerance
+====================================================
+Spark stores RDD lineage information.
+If a partition is lost, Spark can recompute it
+using the transformations that created that partition.
+This provides fault tolerance without requiring
+every intermediate RDD to be permanently stored.
+
+====================================================
+Transformation Types
+====================================================
+filter -> Narrow transformation
+map    -> Narrow transformation
+collect -> Action
+count   -> Action
+
+====================================================
+Day 7 completed successfully!
+====================================================
+[success] elapsed time: 4 s
+[0J
