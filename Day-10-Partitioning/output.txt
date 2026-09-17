@@ -1,0 +1,138 @@
+[info] running (fork) Day10Partitioning 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/17 12:04:39 INFO SparkContext: Running Spark version 3.5.3
+26/09/17 12:04:39 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/17 12:04:39 INFO SparkContext: Java version 17.0.20
+26/09/17 12:04:39 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/17 12:04:39 INFO ResourceUtils: ==============================================================
+26/09/17 12:04:39 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/17 12:04:39 INFO ResourceUtils: ==============================================================
+26/09/17 12:04:39 INFO SparkContext: Submitted application: Day 10 - Partitioning
+26/09/17 12:04:39 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/17 12:04:39 INFO ResourceProfile: Limiting resource is cpu
+26/09/17 12:04:39 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/17 12:04:40 INFO SecurityManager: Changing view acls to: sri
+26/09/17 12:04:40 INFO SecurityManager: Changing modify acls to: sri
+26/09/17 12:04:40 INFO SecurityManager: Changing view acls groups to: 
+26/09/17 12:04:40 INFO SecurityManager: Changing modify acls groups to: 
+26/09/17 12:04:40 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: sri; groups with view permissions: EMPTY; users with modify permissions: sri; groups with modify permissions: EMPTY
+26/09/17 12:04:40 INFO Utils: Successfully started service 'sparkDriver' on port 41131.
+26/09/17 12:04:40 INFO SparkEnv: Registering MapOutputTracker
+26/09/17 12:04:40 INFO SparkEnv: Registering BlockManagerMaster
+26/09/17 12:04:40 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/17 12:04:40 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/17 12:04:40 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/17 12:04:40 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-154f7bd6-90d6-4243-897c-48dae1f7f17f
+26/09/17 12:04:40 INFO MemoryStore: MemoryStore started with capacity 987.6 MiB
+26/09/17 12:04:40 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/17 12:04:40 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+26/09/17 12:04:40 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/17 12:04:41 INFO Executor: Starting executor ID driver on host localhost
+26/09/17 12:04:41 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/17 12:04:41 INFO Executor: Java version 17.0.20
+26/09/17 12:04:41 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/09/17 12:04:41 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@237f7970 for default.
+26/09/17 12:04:41 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 43885.
+26/09/17 12:04:41 INFO NettyBlockTransferService: Server created on localhost:43885
+26/09/17 12:04:41 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/17 12:04:41 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, localhost, 43885, None)
+26/09/17 12:04:41 INFO BlockManagerMasterEndpoint: Registering block manager localhost:43885 with 987.6 MiB RAM, BlockManagerId(driver, localhost, 43885, None)
+26/09/17 12:04:41 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, localhost, 43885, None)
+26/09/17 12:04:41 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, localhost, 43885, None)
+==================================================
+DAY 10 - SPARK PARTITIONING
+==================================================
+
+1. ORIGINAL DATASET
+-------------------
+Total records: 20
+Original partitions: 2
+
+2. RECORDS PER ORIGINAL PARTITION
+---------------------------------
+Partition 0 -> 10 records
+Partition 1 -> 10 records
+
+3. REPARTITION
+--------------
+Partitions after repartition(4): 4
+Partition 0 -> 4 records
+Partition 1 -> 6 records
+Partition 2 -> 6 records
+Partition 3 -> 4 records
+
+4. COALESCE
+-----------
+Partitions after coalesce(2): 2
+Partition 0 -> 10 records
+Partition 1 -> 10 records
+
+5. TOO FEW PARTITIONS SCENARIO
+------------------------------
+Records: 20
+Partitions: 1
+Problem: One partition may become a bottleneck.
+Solution: Increase partitions using repartition().
+Optimized partitions: 4
+
+6. PAIR RDD
+-----------
+Pair RDD partitions before partitionBy: 2
+Pair RDD partitions after partitionBy(4): 4
+Partition 0 -> 0 records
+Partition 1 -> 7 records
+Partition 2 -> 10 records
+Partition 3 -> 3 records
+
+7. REVENUE BY PRODUCT
+--------------------
+Laptop     -> ₹415000
+Mobile     -> ₹245000
+Monitor    -> ₹95000
+Chair      -> ₹41000
+Desk       -> ₹40000
+Keyboard   -> ₹21000
+Mouse      -> ₹7000
+
+8. WHEN TO CHANGE PARTITIONS
+----------------------------
+Increase partitions when:
+- Dataset is large
+- Partitions are too few
+- Some tasks are processing too much data
+- More parallelism is needed
+
+Decrease partitions when:
+- Dataset becomes smaller
+- Too many small partitions exist
+- Reducing task scheduling overhead is useful
+
+9. REPARTITION VS COALESCE
+--------------------------
+repartition(n): Can increase or decrease partitions.
+                 Uses a shuffle.
+coalesce(n):    Mainly decreases partitions.
+                 Usually avoids a full shuffle.
+
+10. TRANSFORMATIONS AND ACTIONS
+-------------------------------
+Transformations:
+- repartition
+- coalesce
+- map
+- mapPartitionsWithIndex
+- partitionBy
+- reduceByKey
+
+Actions:
+- count
+- collect
+
+Lazy operations are transformations.
+Spark builds the execution plan and runs it when an action is called.
+
+==================================================
+DAY 10 COMPLETED SUCCESSFULLY
+==================================================
+[success] elapsed time: 6 s
+[0J
