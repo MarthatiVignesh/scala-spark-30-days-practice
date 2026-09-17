@@ -1,0 +1,119 @@
+[info] running (fork) Day06WordCount 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/17 09:43:17 INFO SparkContext: Running Spark version 3.5.3
+26/09/17 09:43:17 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/17 09:43:17 INFO SparkContext: Java version 17.0.20
+26/09/17 09:43:17 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/17 09:43:18 INFO ResourceUtils: ==============================================================
+26/09/17 09:43:18 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/17 09:43:18 INFO ResourceUtils: ==============================================================
+26/09/17 09:43:18 INFO SparkContext: Submitted application: Day 6 - Word Count
+26/09/17 09:43:18 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/17 09:43:18 INFO ResourceProfile: Limiting resource is cpu
+26/09/17 09:43:18 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/17 09:43:18 INFO SecurityManager: Changing view acls to: sri
+26/09/17 09:43:18 INFO SecurityManager: Changing modify acls to: sri
+26/09/17 09:43:18 INFO SecurityManager: Changing view acls groups to: 
+26/09/17 09:43:18 INFO SecurityManager: Changing modify acls groups to: 
+26/09/17 09:43:18 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: sri; groups with view permissions: EMPTY; users with modify permissions: sri; groups with modify permissions: EMPTY
+26/09/17 09:43:18 INFO Utils: Successfully started service 'sparkDriver' on port 37987.
+26/09/17 09:43:18 INFO SparkEnv: Registering MapOutputTracker
+26/09/17 09:43:18 INFO SparkEnv: Registering BlockManagerMaster
+26/09/17 09:43:18 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/17 09:43:18 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/17 09:43:18 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/17 09:43:18 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-440556d8-04dd-466a-9c6f-0faab03e7927
+26/09/17 09:43:18 INFO MemoryStore: MemoryStore started with capacity 987.6 MiB
+26/09/17 09:43:18 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/17 09:43:18 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+26/09/17 09:43:18 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/17 09:43:19 INFO Executor: Starting executor ID driver on host localhost
+26/09/17 09:43:19 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/17 09:43:19 INFO Executor: Java version 17.0.20
+26/09/17 09:43:19 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/09/17 09:43:19 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@5d2828c9 for default.
+26/09/17 09:43:19 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 44923.
+26/09/17 09:43:19 INFO NettyBlockTransferService: Server created on localhost:44923
+26/09/17 09:43:19 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/17 09:43:19 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, localhost, 44923, None)
+26/09/17 09:43:19 INFO BlockManagerMasterEndpoint: Registering block manager localhost:44923 with 987.6 MiB RAM, BlockManagerId(driver, localhost, 44923, None)
+26/09/17 09:43:19 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, localhost, 44923, None)
+26/09/17 09:43:19 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, localhost, 44923, None)
+==============================================
+Day 6 - Word Count
+==============================================
+
+Total log lines:
+14
+
+Classic Word Count:
+Spark -> 9
+INFO -> 8
+ERROR -> 4
+application -> 4
+connection -> 3
+successful -> 3
+failed -> 3
+User -> 3
+processing -> 3
+started -> 3
+WARN -> 2
+completed -> 2
+slow -> 2
+database -> 2
+login -> 2
+Database -> 2
+response -> 2
+logout -> 1
+timeout -> 1
+
+Case-Insensitive Word Count:
+spark -> 9
+info -> 8
+error -> 4
+application -> 4
+database -> 4
+connection -> 3
+successful -> 3
+failed -> 3
+processing -> 3
+started -> 3
+user -> 3
+warn -> 2
+slow -> 2
+completed -> 2
+login -> 2
+response -> 2
+logout -> 1
+timeout -> 1
+
+==============================================
+Top 10 Most Frequent Words
+==============================================
+1. spark -> 9
+2. info -> 8
+3. error -> 4
+4. application -> 4
+5. database -> 4
+6. connection -> 3
+7. successful -> 3
+8. failed -> 3
+9. processing -> 3
+10. started -> 3
+
+==============================================
+Word Count Flow
+==============================================
+1. flatMap     -> Split lines into words
+2. map         -> Convert each word to (word, 1)
+3. reduceByKey -> Add counts for each word
+
+Lazy transformation operations:
+flatMap, filter, map, reduceByKey, sortByKey
+
+Actions:
+count, collect, take
+
+Day 6 completed successfully!
+[success] elapsed time: 6 s
+[0J

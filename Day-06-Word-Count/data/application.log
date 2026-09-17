@@ -1,0 +1,14 @@
+INFO Spark application started
+INFO Spark processing started
+ERROR Spark database connection failed
+WARN Spark application response slow
+INFO User login successful
+ERROR Database connection failed
+INFO Spark processing completed
+INFO User logout successful
+ERROR Spark application timeout
+INFO Spark application completed
+WARN Database response slow
+INFO Spark processing started
+ERROR Spark database connection failed
+INFO User login successful
