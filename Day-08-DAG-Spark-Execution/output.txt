@@ -1,0 +1,132 @@
+[info] running (fork) Day08DAGSparkExecution 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/17 11:09:54 INFO SparkContext: Running Spark version 3.5.3
+26/09/17 11:09:54 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/17 11:09:54 INFO SparkContext: Java version 17.0.20
+26/09/17 11:09:54 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/17 11:09:54 INFO ResourceUtils: ==============================================================
+26/09/17 11:09:54 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/17 11:09:54 INFO ResourceUtils: ==============================================================
+26/09/17 11:09:54 INFO SparkContext: Submitted application: Day 8 - DAG and Spark Execution
+26/09/17 11:09:54 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/17 11:09:54 INFO ResourceProfile: Limiting resource is cpu
+26/09/17 11:09:54 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/17 11:09:55 INFO SecurityManager: Changing view acls to: sri
+26/09/17 11:09:55 INFO SecurityManager: Changing modify acls to: sri
+26/09/17 11:09:55 INFO SecurityManager: Changing view acls groups to: 
+26/09/17 11:09:55 INFO SecurityManager: Changing modify acls groups to: 
+26/09/17 11:09:55 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: sri; groups with view permissions: EMPTY; users with modify permissions: sri; groups with modify permissions: EMPTY
+26/09/17 11:09:55 INFO Utils: Successfully started service 'sparkDriver' on port 39933.
+26/09/17 11:09:55 INFO SparkEnv: Registering MapOutputTracker
+26/09/17 11:09:55 INFO SparkEnv: Registering BlockManagerMaster
+26/09/17 11:09:55 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/17 11:09:55 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/17 11:09:55 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/17 11:09:55 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-04846110-44d3-4000-b247-8aa0bb96c4db
+26/09/17 11:09:55 INFO MemoryStore: MemoryStore started with capacity 987.6 MiB
+26/09/17 11:09:55 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/17 11:09:55 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+26/09/17 11:09:55 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/17 11:09:55 INFO Executor: Starting executor ID driver on host localhost
+26/09/17 11:09:55 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/17 11:09:55 INFO Executor: Java version 17.0.20
+26/09/17 11:09:56 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/09/17 11:09:56 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@242b6e1a for default.
+26/09/17 11:09:56 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 42665.
+26/09/17 11:09:56 INFO NettyBlockTransferService: Server created on localhost:42665
+26/09/17 11:09:56 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/17 11:09:56 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, localhost, 42665, None)
+26/09/17 11:09:56 INFO BlockManagerMasterEndpoint: Registering block manager localhost:42665 with 987.6 MiB RAM, BlockManagerId(driver, localhost, 42665, None)
+26/09/17 11:09:56 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, localhost, 42665, None)
+26/09/17 11:09:56 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, localhost, 42665, None)
+====================================================
+Day 8 - DAG and Spark Execution
+====================================================
+
+Input Sales Data:
+Laptop,Electronics,120000
+Mobile,Electronics,75000
+Laptop,Electronics,90000
+Keyboard,Accessories,6000
+Mobile,Electronics,50000
+Mouse,Accessories,3000
+Laptop,Electronics,110000
+Keyboard,Accessories,7000
+Mouse,Accessories,4000
+Mobile,Electronics,65000
+
+Revenue By Product:
+Laptop -> ₹320000
+Mobile -> ₹190000
+Keyboard -> ₹13000
+Mouse -> ₹7000
+
+Number of Products:
+4
+
+====================================================
+Partition Information
+====================================================
+Input partitions: 2
+Product revenue partitions: 2
+Final RDD partitions: 2
+
+====================================================
+DAG and Execution Flow
+====================================================
+
+sales
+  |
+  | filter()
+  v
+validSales
+  |
+  | map()
+  v
+productRevenue
+  |
+  | reduceByKey()
+  | SHUFFLE BOUNDARY
+  v
+revenueByProduct
+  |
+  | collect()
+  v
+Final Result
+
+====================================================
+Jobs, Stages, Tasks and Partitions
+====================================================
+Job: Created when an action such as collect() or count() runs.
+Stage: A group of operations separated by shuffle boundaries.
+Task: Work performed on one partition.
+Partition: A logical division of an RDD.
+
+For this reduceByKey pipeline:
+Stage 0: textFile -> filter -> map
+Stage 1: reduceByKey -> collect
+reduceByKey creates a shuffle boundary.
+
+====================================================
+Narrow vs Wide Transformations
+====================================================
+filter()     -> Narrow transformation
+map()        -> Narrow transformation
+reduceByKey() -> Wide transformation
+collect()    -> Action
+count()      -> Action
+
+====================================================
+DAG Explanation
+====================================================
+Spark builds a Directed Acyclic Graph (DAG) from transformations.
+The DAG represents dependencies between RDDs.
+Narrow transformations can be pipelined within a stage.
+Wide transformations such as reduceByKey require a shuffle.
+Shuffle creates a boundary between stages.
+
+====================================================
+Day 8 completed successfully!
+====================================================
+[success] elapsed time: 6 s
+[0J
