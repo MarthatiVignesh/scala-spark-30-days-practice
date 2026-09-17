@@ -1,0 +1,14 @@
+A001,Deposit,50000
+A002,Withdrawal,10000
+A001,Withdrawal,5000
+A003,Deposit,75000
+A002,Deposit,25000
+A001,Deposit,30000
+A003,Withdrawal,15000
+A004,Deposit,40000
+A002,Withdrawal,5000
+A004,Withdrawal,8000
+A001,Withdrawal,10000
+A003,Deposit,20000
+A004,Deposit,15000
+A002,Deposit,10000

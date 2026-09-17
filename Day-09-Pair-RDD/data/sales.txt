@@ -1,0 +1,14 @@
+Laptop,Electronics,120000
+Mobile,Electronics,75000
+Laptop,Electronics,90000
+Keyboard,Accessories,6000
+Mobile,Electronics,50000
+Mouse,Accessories,3000
+Laptop,Electronics,110000
+Keyboard,Accessories,7000
+Mouse,Accessories,4000
+Mobile,Electronics,65000
+Monitor,Electronics,45000
+Chair,Furniture,12000
+Desk,Furniture,18000
+Chair,Furniture,15000
