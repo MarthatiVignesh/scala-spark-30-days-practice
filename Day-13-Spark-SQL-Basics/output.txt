@@ -1,0 +1,218 @@
+[info] running (fork) Day13SparkSQLBasics 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/22 10:51:53 INFO SparkContext: Running Spark version 3.5.3
+26/09/22 10:51:53 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/22 10:51:53 INFO SparkContext: Java version 17.0.20
+26/09/22 10:51:53 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/22 10:51:53 INFO ResourceUtils: ==============================================================
+26/09/22 10:51:53 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/22 10:51:53 INFO ResourceUtils: ==============================================================
+26/09/22 10:51:53 INFO SparkContext: Submitted application: Day 13 - Spark SQL Basics
+26/09/22 10:51:53 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/22 10:51:53 INFO ResourceProfile: Limiting resource is cpu
+26/09/22 10:51:53 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/22 10:51:53 INFO SecurityManager: Changing view acls to: sri
+26/09/22 10:51:53 INFO SecurityManager: Changing modify acls to: sri
+26/09/22 10:51:53 INFO SecurityManager: Changing view acls groups to: 
+26/09/22 10:51:53 INFO SecurityManager: Changing modify acls groups to: 
+26/09/22 10:51:53 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: sri; groups with view permissions: EMPTY; users with modify permissions: sri; groups with modify permissions: EMPTY
+26/09/22 10:51:53 INFO Utils: Successfully started service 'sparkDriver' on port 41429.
+26/09/22 10:51:53 INFO SparkEnv: Registering MapOutputTracker
+26/09/22 10:51:53 INFO SparkEnv: Registering BlockManagerMaster
+26/09/22 10:51:53 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/22 10:51:53 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/22 10:51:53 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/22 10:51:54 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-ada04774-12b6-4639-9dad-87cf7e0b9865
+26/09/22 10:51:54 INFO MemoryStore: MemoryStore started with capacity 987.6 MiB
+26/09/22 10:51:54 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/22 10:51:54 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+26/09/22 10:51:54 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/22 10:51:54 INFO Executor: Starting executor ID driver on host localhost
+26/09/22 10:51:54 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/22 10:51:54 INFO Executor: Java version 17.0.20
+26/09/22 10:51:54 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/09/22 10:51:54 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@67e13bd0 for default.
+26/09/22 10:51:54 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 45457.
+26/09/22 10:51:54 INFO NettyBlockTransferService: Server created on localhost:45457
+26/09/22 10:51:54 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/22 10:51:54 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, localhost, 45457, None)
+26/09/22 10:51:54 INFO BlockManagerMasterEndpoint: Registering block manager localhost:45457 with 987.6 MiB RAM, BlockManagerId(driver, localhost, 45457, None)
+26/09/22 10:51:54 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, localhost, 45457, None)
+26/09/22 10:51:54 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, localhost, 45457, None)
+====================================================
+        DAY 13 - SPARK SQL BASICS
+====================================================
+
+1. CREATE DATAFRAME FROM CSV
+----------------------------------------
++-----------+-----+---------+---+---------------+--------+
+|customer_id|name |city     |age|purchase_amount|status  |
++-----------+-----+---------+---+---------------+--------+
+|C001       |Ravi |Hyderabad|22 |45000          |Active  |
+|C002       |Priya|Bengaluru|25 |62000          |Active  |
+|C003       |Arjun|Chennai  |28 |38000          |Inactive|
+|C004       |Teja |Hyderabad|24 |75000          |Active  |
+|C005       |Sneha|Mumbai   |30 |92000          |Active  |
+|C006       |Kiran|Bengaluru|26 |55000          |Active  |
+|C007       |Manoj|Delhi    |32 |41000          |Inactive|
+|C008       |Anu  |Hyderabad|23 |68000          |Active  |
+|C009       |Varun|Chennai  |29 |52000          |Active  |
+|C010       |Divya|Mumbai   |27 |83000          |Active  |
++-----------+-----+---------+---+---------------+--------+
+
+
+2. DATAFRAME SCHEMA
+----------------------------------------
+root
+ |-- customer_id: string (nullable = true)
+ |-- name: string (nullable = true)
+ |-- city: string (nullable = true)
+ |-- age: integer (nullable = true)
+ |-- purchase_amount: integer (nullable = true)
+ |-- status: string (nullable = true)
+
+
+3. SELECT CUSTOMER COLUMNS
+----------------------------------------
++-----------+-----+---------+---------------+
+|customer_id|name |city     |purchase_amount|
++-----------+-----+---------+---------------+
+|C001       |Ravi |Hyderabad|45000          |
+|C002       |Priya|Bengaluru|62000          |
+|C003       |Arjun|Chennai  |38000          |
+|C004       |Teja |Hyderabad|75000          |
+|C005       |Sneha|Mumbai   |92000          |
+|C006       |Kiran|Bengaluru|55000          |
+|C007       |Manoj|Delhi    |41000          |
+|C008       |Anu  |Hyderabad|68000          |
+|C009       |Varun|Chennai  |52000          |
+|C010       |Divya|Mumbai   |83000          |
++-----------+-----+---------+---------------+
+
+
+4. ACTIVE CUSTOMERS
+----------------------------------------
++-----------+-----+---------+---------------+
+|customer_id|name |city     |purchase_amount|
++-----------+-----+---------+---------------+
+|C001       |Ravi |Hyderabad|45000          |
+|C002       |Priya|Bengaluru|62000          |
+|C004       |Teja |Hyderabad|75000          |
+|C005       |Sneha|Mumbai   |92000          |
+|C006       |Kiran|Bengaluru|55000          |
+|C008       |Anu  |Hyderabad|68000          |
+|C009       |Varun|Chennai  |52000          |
+|C010       |Divya|Mumbai   |83000          |
++-----------+-----+---------+---------------+
+
+
+5. HIGH VALUE CUSTOMERS
+----------------------------------------
++-----------+-----+---------------+
+|customer_id|name |purchase_amount|
++-----------+-----+---------------+
+|C002       |Priya|62000          |
+|C004       |Teja |75000          |
+|C005       |Sneha|92000          |
+|C008       |Anu  |68000          |
+|C010       |Divya|83000          |
++-----------+-----+---------------+
+
+
+6. WITHCOLUMN - CUSTOMER CATEGORY
+----------------------------------------
++-----------+-----+---------------+-----------------+
+|customer_id|name |purchase_amount|customer_category|
++-----------+-----+---------------+-----------------+
+|C001       |Ravi |45000          |Basic            |
+|C002       |Priya|62000          |Regular          |
+|C003       |Arjun|38000          |Basic            |
+|C004       |Teja |75000          |Regular          |
+|C005       |Sneha|92000          |Premium          |
+|C006       |Kiran|55000          |Regular          |
+|C007       |Manoj|41000          |Basic            |
+|C008       |Anu  |68000          |Regular          |
+|C009       |Varun|52000          |Regular          |
+|C010       |Divya|83000          |Premium          |
++-----------+-----+---------------+-----------------+
+
+
+7. WITHCOLUMN - PURCHASE WITH 18% TAX
+----------------------------------------
++-----------+-----+---------------+-----------------+
+|customer_id|name |purchase_amount|purchase_with_tax|
++-----------+-----+---------------+-----------------+
+|C001       |Ravi |45000          |53100.0          |
+|C002       |Priya|62000          |73160.0          |
+|C003       |Arjun|38000          |44840.0          |
+|C004       |Teja |75000          |88500.0          |
+|C005       |Sneha|92000          |108560.0         |
+|C006       |Kiran|55000          |64900.0          |
+|C007       |Manoj|41000          |48380.0          |
+|C008       |Anu  |68000          |80240.0          |
+|C009       |Varun|52000          |61360.0          |
+|C010       |Divya|83000          |97940.0          |
++-----------+-----+---------------+-----------------+
+
+
+8. CREATE TEMPORARY VIEW
+----------------------------------------
+Temporary view 'customers' created successfully.
+
+9. SPARK SQL - ACTIVE CUSTOMERS
+----------------------------------------
++-----------+-----+---------+---------------+
+|customer_id|name |city     |purchase_amount|
++-----------+-----+---------+---------------+
+|C005       |Sneha|Mumbai   |92000          |
+|C010       |Divya|Mumbai   |83000          |
+|C004       |Teja |Hyderabad|75000          |
+|C008       |Anu  |Hyderabad|68000          |
+|C002       |Priya|Bengaluru|62000          |
+|C006       |Kiran|Bengaluru|55000          |
+|C009       |Varun|Chennai  |52000          |
+|C001       |Ravi |Hyderabad|45000          |
++-----------+-----+---------+---------------+
+
+
+10. CITY-WISE CUSTOMER ANALYTICS
+----------------------------------------
++---------+--------------+----------------+--------------+
+|city     |customer_count|average_purchase|total_purchase|
++---------+--------------+----------------+--------------+
+|Hyderabad|3             |62666.67        |188000        |
+|Mumbai   |2             |87500.0         |175000        |
+|Bengaluru|2             |58500.0         |117000        |
+|Chennai  |2             |45000.0         |90000         |
+|Delhi    |1             |41000.0         |41000         |
++---------+--------------+----------------+--------------+
+
+
+11. TOP 5 CUSTOMERS
+----------------------------------------
++-----------+-----+---------+---------------+
+|customer_id|name |city     |purchase_amount|
++-----------+-----+---------+---------------+
+|C005       |Sneha|Mumbai   |92000          |
+|C010       |Divya|Mumbai   |83000          |
+|C004       |Teja |Hyderabad|75000          |
+|C008       |Anu  |Hyderabad|68000          |
+|C002       |Priya|Bengaluru|62000          |
++-----------+-----+---------+---------------+
+
+
+12. CUSTOMER ANALYTICS REPORT
+========================================
+Total Customers     : 10
+Active Customers    : 8
+Inactive Customers  : 2
+Total Purchase      : ₹611000
+Average Purchase    : ₹61100.0
+
+Customer Analytics Report generated successfully.
+
+====================================================
+       DAY 13 COMPLETED SUCCESSFULLY
+====================================================
+[success] elapsed time: 13 s
+[0J
