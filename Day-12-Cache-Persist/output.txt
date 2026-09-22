@@ -1,0 +1,116 @@
+[info] running (fork) Day12CachePersist 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/22 10:06:45 INFO SparkContext: Running Spark version 3.5.3
+26/09/22 10:06:45 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/22 10:06:45 INFO SparkContext: Java version 17.0.20
+26/09/22 10:06:45 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/22 10:06:45 INFO ResourceUtils: ==============================================================
+26/09/22 10:06:45 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/22 10:06:45 INFO ResourceUtils: ==============================================================
+26/09/22 10:06:45 INFO SparkContext: Submitted application: Day-12-Cache-Persist
+26/09/22 10:06:45 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/22 10:06:45 INFO ResourceProfile: Limiting resource is cpu
+26/09/22 10:06:45 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/22 10:06:45 INFO SecurityManager: Changing view acls to: sri
+26/09/22 10:06:45 INFO SecurityManager: Changing modify acls to: sri
+26/09/22 10:06:45 INFO SecurityManager: Changing view acls groups to: 
+26/09/22 10:06:45 INFO SecurityManager: Changing modify acls groups to: 
+26/09/22 10:06:45 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: sri; groups with view permissions: EMPTY; users with modify permissions: sri; groups with modify permissions: EMPTY
+26/09/22 10:06:45 INFO Utils: Successfully started service 'sparkDriver' on port 35229.
+26/09/22 10:06:45 INFO SparkEnv: Registering MapOutputTracker
+26/09/22 10:06:45 INFO SparkEnv: Registering BlockManagerMaster
+26/09/22 10:06:45 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/22 10:06:45 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/22 10:06:45 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/22 10:06:45 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-e916f13a-b5be-4b89-a4fe-2ca362fde8c0
+26/09/22 10:06:46 INFO MemoryStore: MemoryStore started with capacity 987.6 MiB
+26/09/22 10:06:46 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/22 10:06:46 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+26/09/22 10:06:46 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/22 10:06:46 INFO Executor: Starting executor ID driver on host localhost
+26/09/22 10:06:46 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/22 10:06:46 INFO Executor: Java version 17.0.20
+26/09/22 10:06:46 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/09/22 10:06:46 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@d5d5353 for default.
+26/09/22 10:06:46 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 43299.
+26/09/22 10:06:46 INFO NettyBlockTransferService: Server created on localhost:43299
+26/09/22 10:06:46 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/22 10:06:46 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, localhost, 43299, None)
+26/09/22 10:06:46 INFO BlockManagerMasterEndpoint: Registering block manager localhost:43299 with 987.6 MiB RAM, BlockManagerId(driver, localhost, 43299, None)
+26/09/22 10:06:46 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, localhost, 43299, None)
+26/09/22 10:06:46 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, localhost, 43299, None)
+==================================================
+DAY 12 - CACHE AND PERSIST
+==================================================
+Total raw transactions: 18
+Raw partitions: 2
+
+--------------------------------------------------
+CLEANED TRANSACTION DATA
+--------------------------------------------------
+Storage level BEFORE cache: StorageLevel(1 replicas)
+Valid transactions: 16
+Storage level AFTER cache: StorageLevel(memory, deserialized, 1 replicas)
+
+==================================================
+REPORT 1 - TOTAL TRANSACTIONS
+==================================================
+Total valid transactions: 16
+
+==================================================
+REPORT 2 - REVENUE BY PRODUCT
+==================================================
+Laptop     ₹415000.00
+Mobile     ₹245000.00
+Monitor    ₹143000.00
+Keyboard   ₹13000.00
+Mouse      ₹10500.00
+
+==================================================
+REPORT 3 - REVENUE BY CUSTOMER
+==================================================
+C004       ₹250000.00
+C002       ₹235000.00
+C001       ₹182000.00
+C005       ₹98500.00
+C003       ₹61000.00
+
+==================================================
+CACHE VS PERSIST
+==================================================
+cache() uses MEMORY_ONLY storage level.
+persist() allows choosing a specific storage level.
+Current cached storage level: StorageLevel(memory, deserialized, 1 replicas)
+
+Available storage levels:
+MEMORY_ONLY       -> Store partitions in memory.
+MEMORY_AND_DISK   -> Memory first, disk if needed.
+DISK_ONLY         -> Store partitions only on disk.
+
+==================================================
+WHEN CACHING CAN HURT PERFORMANCE
+==================================================
+1. Dataset is used only once.
+2. Dataset is too large for available memory.
+3. Caching causes memory pressure and eviction.
+4. Recomputing the dataset is cheaper than storing it.
+5. Unnecessary cached datasets consume cluster resources.
+
+==================================================
+THREE REPORTS USING THE SAME CACHED DATASET
+==================================================
+Report 1: Total valid transactions
+Report 2: Revenue by product
+Report 3: Revenue by customer
+All three reports reuse cleanedTransactions.
+
+==================================================
+UNCACHE DATASET
+==================================================
+Storage level after unpersist: StorageLevel(1 replicas)
+
+==================================================
+DAY 12 COMPLETED SUCCESSFULLY
+==================================================
+[success] elapsed time: 6 s
+[0J
