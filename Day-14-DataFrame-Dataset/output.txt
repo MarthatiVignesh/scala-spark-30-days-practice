@@ -1,0 +1,178 @@
+[info] running (fork) Day14DataFrameDataset 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/23 09:58:24 INFO SparkContext: Running Spark version 3.5.3
+26/09/23 09:58:24 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/23 09:58:24 INFO SparkContext: Java version 17.0.20
+26/09/23 09:58:24 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/23 09:58:24 INFO ResourceUtils: ==============================================================
+26/09/23 09:58:24 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/23 09:58:24 INFO ResourceUtils: ==============================================================
+26/09/23 09:58:24 INFO SparkContext: Submitted application: Day 14 - DataFrame and Dataset
+26/09/23 09:58:24 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/23 09:58:24 INFO ResourceProfile: Limiting resource is cpu
+26/09/23 09:58:24 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/23 09:58:25 INFO SecurityManager: Changing view acls to: sri
+26/09/23 09:58:25 INFO SecurityManager: Changing modify acls to: sri
+26/09/23 09:58:25 INFO SecurityManager: Changing view acls groups to: 
+26/09/23 09:58:25 INFO SecurityManager: Changing modify acls groups to: 
+26/09/23 09:58:25 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: sri; groups with view permissions: EMPTY; users with modify permissions: sri; groups with modify permissions: EMPTY
+26/09/23 09:58:25 INFO Utils: Successfully started service 'sparkDriver' on port 41425.
+26/09/23 09:58:25 INFO SparkEnv: Registering MapOutputTracker
+26/09/23 09:58:25 INFO SparkEnv: Registering BlockManagerMaster
+26/09/23 09:58:25 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/23 09:58:25 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/23 09:58:25 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/23 09:58:25 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-6f7537dd-9e61-4feb-8c4d-d9135722ed45
+26/09/23 09:58:25 INFO MemoryStore: MemoryStore started with capacity 987.6 MiB
+26/09/23 09:58:25 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/23 09:58:25 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+26/09/23 09:58:25 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/23 09:58:26 INFO Executor: Starting executor ID driver on host localhost
+26/09/23 09:58:26 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/23 09:58:26 INFO Executor: Java version 17.0.20
+26/09/23 09:58:26 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/09/23 09:58:26 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@4228bf58 for default.
+26/09/23 09:58:26 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 39593.
+26/09/23 09:58:26 INFO NettyBlockTransferService: Server created on localhost:39593
+26/09/23 09:58:26 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/23 09:58:26 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, localhost, 39593, None)
+26/09/23 09:58:26 INFO BlockManagerMasterEndpoint: Registering block manager localhost:39593 with 987.6 MiB RAM, BlockManagerId(driver, localhost, 39593, None)
+26/09/23 09:58:26 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, localhost, 39593, None)
+26/09/23 09:58:26 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, localhost, 39593, None)
+====================================================
+DAY 14 - DATAFRAME AND DATASET
+====================================================
+
+--- 1. EMPLOYEE DATAFRAME ---
++-----------+-----+----------+---+------+
+|employee_id|name |department|age|salary|
++-----------+-----+----------+---+------+
+|E001       |Ravi |IT        |24 |55000 |
+|E002       |Priya|HR        |26 |62000 |
+|E003       |Arjun|Finance   |29 |75000 |
+|E004       |Teja |IT        |25 |68000 |
+|E005       |Sneha|Marketing |27 |58000 |
+|E006       |Kiran|Finance   |31 |82000 |
+|E007       |Manoj|HR        |30 |64000 |
+|E008       |Anu  |IT        |23 |72000 |
+|E009       |Varun|Marketing |28 |60000 |
+|E010       |Divya|Finance   |26 |90000 |
++-----------+-----+----------+---+------+
+
+--- DATAFRAME SCHEMA ---
+root
+ |-- employee_id: string (nullable = true)
+ |-- name: string (nullable = true)
+ |-- department: string (nullable = true)
+ |-- age: integer (nullable = true)
+ |-- salary: integer (nullable = true)
+
+
+--- 2. EMPLOYEE DATASET ---
++-----------+-----+----------+---+------+
+|employee_id|name |department|age|salary|
++-----------+-----+----------+---+------+
+|E001       |Ravi |IT        |24 |55000 |
+|E002       |Priya|HR        |26 |62000 |
+|E003       |Arjun|Finance   |29 |75000 |
+|E004       |Teja |IT        |25 |68000 |
+|E005       |Sneha|Marketing |27 |58000 |
+|E006       |Kiran|Finance   |31 |82000 |
+|E007       |Manoj|HR        |30 |64000 |
+|E008       |Anu  |IT        |23 |72000 |
+|E009       |Varun|Marketing |28 |60000 |
+|E010       |Divya|Finance   |26 |90000 |
++-----------+-----+----------+---+------+
+
+
+--- 3. TYPED DATASET: SALARY >= 65000 ---
++-----------+-----+----------+---+------+
+|employee_id|name |department|age|salary|
++-----------+-----+----------+---+------+
+|E003       |Arjun|Finance   |29 |75000 |
+|E004       |Teja |IT        |25 |68000 |
+|E006       |Kiran|Finance   |31 |82000 |
+|E008       |Anu  |IT        |23 |72000 |
+|E010       |Divya|Finance   |26 |90000 |
++-----------+-----+----------+---+------+
+
+
+--- 4. DATASET BACK TO DATAFRAME ---
++-----------+-----+----------+---+------+
+|employee_id|name |department|age|salary|
++-----------+-----+----------+---+------+
+|E001       |Ravi |IT        |24 |55000 |
+|E002       |Priya|HR        |26 |62000 |
+|E003       |Arjun|Finance   |29 |75000 |
+|E004       |Teja |IT        |25 |68000 |
+|E005       |Sneha|Marketing |27 |58000 |
+|E006       |Kiran|Finance   |31 |82000 |
+|E007       |Manoj|HR        |30 |64000 |
+|E008       |Anu  |IT        |23 |72000 |
+|E009       |Varun|Marketing |28 |60000 |
+|E010       |Divya|Finance   |26 |90000 |
++-----------+-----+----------+---+------+
+
+
+--- 5. TYPED EMPLOYEE PAYROLL PIPELINE ---
++-----------+-----+----------+-------+-------------+------+---------+
+|employee_id|name |department|salary |annual_salary|bonus |total_pay|
++-----------+-----+----------+-------+-------------+------+---------+
+|E001       |Ravi |IT        |55000.0|660000.0     |2750.0|662750.0 |
+|E002       |Priya|HR        |62000.0|744000.0     |3100.0|747100.0 |
+|E003       |Arjun|Finance   |75000.0|900000.0     |3750.0|903750.0 |
+|E004       |Teja |IT        |68000.0|816000.0     |3400.0|819400.0 |
+|E005       |Sneha|Marketing |58000.0|696000.0     |2900.0|698900.0 |
+|E006       |Kiran|Finance   |82000.0|984000.0     |8200.0|992200.0 |
+|E007       |Manoj|HR        |64000.0|768000.0     |3200.0|771200.0 |
+|E008       |Anu  |IT        |72000.0|864000.0     |3600.0|867600.0 |
+|E009       |Varun|Marketing |60000.0|720000.0     |3000.0|723000.0 |
+|E010       |Divya|Finance   |90000.0|1080000.0    |9000.0|1089000.0|
++-----------+-----+----------+-------+-------------+------+---------+
+
+
+--- 6. PAYROLL DATAFRAME ---
++-----------+-----+----------+-------------+------+---------+
+|employee_id|name |department|annual_salary|bonus |total_pay|
++-----------+-----+----------+-------------+------+---------+
+|E001       |Ravi |IT        |660000.0     |2750.0|662750.0 |
+|E002       |Priya|HR        |744000.0     |3100.0|747100.0 |
+|E003       |Arjun|Finance   |900000.0     |3750.0|903750.0 |
+|E004       |Teja |IT        |816000.0     |3400.0|819400.0 |
+|E005       |Sneha|Marketing |696000.0     |2900.0|698900.0 |
+|E006       |Kiran|Finance   |984000.0     |8200.0|992200.0 |
+|E007       |Manoj|HR        |768000.0     |3200.0|771200.0 |
+|E008       |Anu  |IT        |864000.0     |3600.0|867600.0 |
+|E009       |Varun|Marketing |720000.0     |3000.0|723000.0 |
+|E010       |Divya|Finance   |1080000.0    |9000.0|1089000.0|
++-----------+-----+----------+-------------+------+---------+
+
+
+--- 7. DEPARTMENT-WISE PAYROLL ---
++----------+--------------+-------------------+-----------+-------------+
+|department|employee_count|total_annual_salary|total_bonus|total_payroll|
++----------+--------------+-------------------+-----------+-------------+
+|Finance   |3             |2964000.0          |20950.0    |2984950.0    |
+|IT        |3             |2340000.0          |9750.0     |2349750.0    |
+|HR        |2             |1512000.0          |6300.0     |1518300.0    |
+|Marketing |2             |1416000.0          |5900.0     |1421900.0    |
++----------+--------------+-------------------+-----------+-------------+
+
+
+--- 8. RDD vs DATAFRAME vs DATASET ---
+RDD       : Low-level distributed collection, flexible and object-oriented.
+DataFrame : Distributed table of Rows with schema and SQL/DataFrame APIs.
+Dataset   : Typed distributed collection with compile-time type safety.
+Catalyst  : Spark SQL optimizer used for DataFrame/Dataset query plans.
+Type Safety: Dataset provides compile-time checking for typed operations.
+
+--- 9. FINAL PAYROLL STATISTICS ---
+Total Employees : 10
+Total Monthly Salary : 686000
+Average Monthly Salary : 68600.0
+
+====================================================
+DAY 14 COMPLETED SUCCESSFULLY
+====================================================
+[success] elapsed time: 13 s
+[0J
