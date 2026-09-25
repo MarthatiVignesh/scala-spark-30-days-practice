@@ -1,0 +1,11 @@
+policy_id,customer_id,customer_name,policy_type,policy_status,policy_amount,policy_date
+P001,C001,Ravi,Health,Active,500000,2026-01-10
+P002,C001,Ravi,Health,Renewed,550000,2026-06-15
+P003,C001,Ravi,Health,Active,600000,2026-09-10
+P004,C002,Priya,Life,Active,800000,2026-02-05
+P005,C002,Priya,Life,Renewed,900000,2026-07-20
+P006,C003,Arjun,Vehicle,Active,300000,2026-03-12
+P007,C003,Arjun,Vehicle,Expired,250000,2026-05-18
+P008,C003,Arjun,Vehicle,Active,350000,2026-08-25
+P009,C004,Teja,Health,Active,450000,2026-04-10
+P010,C004,Teja,Health,Renewed,500000,2026-09-01

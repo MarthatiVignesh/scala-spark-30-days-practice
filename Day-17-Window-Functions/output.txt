@@ -1,0 +1,191 @@
+[info] running (fork) Day17WindowFunctions 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/25 12:02:19 INFO SparkContext: Running Spark version 3.5.3
+26/09/25 12:02:19 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/25 12:02:19 INFO SparkContext: Java version 17.0.20.1
+26/09/25 12:02:19 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/25 12:02:19 INFO ResourceUtils: ==============================================================
+26/09/25 12:02:19 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/25 12:02:19 INFO ResourceUtils: ==============================================================
+26/09/25 12:02:19 INFO SparkContext: Submitted application: Day-17-Window-Functions
+26/09/25 12:02:19 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/25 12:02:19 INFO ResourceProfile: Limiting resource is cpu
+26/09/25 12:02:19 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/25 12:02:19 INFO SecurityManager: Changing view acls to: sri
+26/09/25 12:02:19 INFO SecurityManager: Changing modify acls to: sri
+26/09/25 12:02:19 INFO SecurityManager: Changing view acls groups to: 
+26/09/25 12:02:19 INFO SecurityManager: Changing modify acls groups to: 
+26/09/25 12:02:19 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: sri; groups with view permissions: EMPTY; users with modify permissions: sri; groups with modify permissions: EMPTY
+26/09/25 12:02:20 INFO Utils: Successfully started service 'sparkDriver' on port 43323.
+26/09/25 12:02:20 INFO SparkEnv: Registering MapOutputTracker
+26/09/25 12:02:20 INFO SparkEnv: Registering BlockManagerMaster
+26/09/25 12:02:20 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/25 12:02:20 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/25 12:02:20 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/25 12:02:20 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-57cf255f-4ec7-4e65-bd59-1fd3d0b00966
+26/09/25 12:02:20 INFO MemoryStore: MemoryStore started with capacity 987.6 MiB
+26/09/25 12:02:20 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/25 12:02:20 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+26/09/25 12:02:20 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/25 12:02:21 INFO Executor: Starting executor ID driver on host localhost
+26/09/25 12:02:21 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/25 12:02:21 INFO Executor: Java version 17.0.20.1
+26/09/25 12:02:21 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/09/25 12:02:21 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@46349b95 for default.
+26/09/25 12:02:21 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 46447.
+26/09/25 12:02:21 INFO NettyBlockTransferService: Server created on localhost:46447
+26/09/25 12:02:21 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/25 12:02:21 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, localhost, 46447, None)
+26/09/25 12:02:21 INFO BlockManagerMasterEndpoint: Registering block manager localhost:46447 with 987.6 MiB RAM, BlockManagerId(driver, localhost, 46447, None)
+26/09/25 12:02:21 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, localhost, 46447, None)
+26/09/25 12:02:21 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, localhost, 46447, None)
+
+========== STUDENT DATA ==========
++----------+------------+------+-----+
+|student_id|student_name|course|marks|
++----------+------------+------+-----+
+|S001      |Ravi        |Scala |88   |
+|S002      |Priya       |Scala |95   |
+|S003      |Arjun       |Scala |82   |
+|S004      |Teja        |Scala |95   |
+|S005      |Sneha       |Spark |91   |
+|S006      |Kiran       |Spark |85   |
+|S007      |Manoj       |Spark |91   |
+|S008      |Anu         |Spark |78   |
+|S009      |Varun       |Hadoop|89   |
+|S010      |Divya       |Hadoop|94   |
+|S011      |Meena       |Hadoop|89   |
+|S012      |Rahul       |Hadoop|76   |
++----------+------------+------+-----+
+
+
+========== ROW_NUMBER ==========
++----------+------------+------+-----+----------+
+|student_id|student_name|course|marks|row_number|
++----------+------------+------+-----+----------+
+|S010      |Divya       |Hadoop|94   |1         |
+|S009      |Varun       |Hadoop|89   |2         |
+|S011      |Meena       |Hadoop|89   |3         |
+|S012      |Rahul       |Hadoop|76   |4         |
+|S002      |Priya       |Scala |95   |1         |
+|S004      |Teja        |Scala |95   |2         |
+|S001      |Ravi        |Scala |88   |3         |
+|S003      |Arjun       |Scala |82   |4         |
+|S005      |Sneha       |Spark |91   |1         |
+|S007      |Manoj       |Spark |91   |2         |
+|S006      |Kiran       |Spark |85   |3         |
+|S008      |Anu         |Spark |78   |4         |
++----------+------------+------+-----+----------+
+
+
+========== RANK ==========
++----------+------------+------+-----+----+
+|student_id|student_name|course|marks|rank|
++----------+------------+------+-----+----+
+|S010      |Divya       |Hadoop|94   |1   |
+|S009      |Varun       |Hadoop|89   |2   |
+|S011      |Meena       |Hadoop|89   |2   |
+|S012      |Rahul       |Hadoop|76   |4   |
+|S002      |Priya       |Scala |95   |1   |
+|S004      |Teja        |Scala |95   |1   |
+|S001      |Ravi        |Scala |88   |3   |
+|S003      |Arjun       |Scala |82   |4   |
+|S005      |Sneha       |Spark |91   |1   |
+|S007      |Manoj       |Spark |91   |1   |
+|S006      |Kiran       |Spark |85   |3   |
+|S008      |Anu         |Spark |78   |4   |
++----------+------------+------+-----+----+
+
+
+========== DENSE_RANK ==========
++----------+------------+------+-----+----------+
+|student_id|student_name|course|marks|dense_rank|
++----------+------------+------+-----+----------+
+|S010      |Divya       |Hadoop|94   |1         |
+|S009      |Varun       |Hadoop|89   |2         |
+|S011      |Meena       |Hadoop|89   |2         |
+|S012      |Rahul       |Hadoop|76   |3         |
+|S002      |Priya       |Scala |95   |1         |
+|S004      |Teja        |Scala |95   |1         |
+|S001      |Ravi        |Scala |88   |2         |
+|S003      |Arjun       |Scala |82   |3         |
+|S005      |Sneha       |Spark |91   |1         |
+|S007      |Manoj       |Spark |91   |1         |
+|S006      |Kiran       |Spark |85   |2         |
+|S008      |Anu         |Spark |78   |3         |
++----------+------------+------+-----+----------+
+
+
+========== TOP 3 STUDENTS PER COURSE ==========
++----------+------------+------+-----+----------+
+|student_id|student_name|course|marks|dense_rank|
++----------+------------+------+-----+----------+
+|S010      |Divya       |Hadoop|94   |1         |
+|S009      |Varun       |Hadoop|89   |2         |
+|S011      |Meena       |Hadoop|89   |2         |
+|S012      |Rahul       |Hadoop|76   |3         |
+|S002      |Priya       |Scala |95   |1         |
+|S004      |Teja        |Scala |95   |1         |
+|S001      |Ravi        |Scala |88   |2         |
+|S003      |Arjun       |Scala |82   |3         |
+|S005      |Sneha       |Spark |91   |1         |
+|S007      |Manoj       |Spark |91   |1         |
+|S006      |Kiran       |Spark |85   |2         |
+|S008      |Anu         |Spark |78   |3         |
++----------+------------+------+-----+----------+
+
+
+========== CUSTOMER POLICY DATA ==========
++---------+-----------+-------------+-----------+-------------+-------------+-----------+
+|policy_id|customer_id|customer_name|policy_type|policy_status|policy_amount|policy_date|
++---------+-----------+-------------+-----------+-------------+-------------+-----------+
+|P001     |C001       |Ravi         |Health     |Active       |500000       |2026-01-10 |
+|P002     |C001       |Ravi         |Health     |Renewed      |550000       |2026-06-15 |
+|P003     |C001       |Ravi         |Health     |Active       |600000       |2026-09-10 |
+|P004     |C002       |Priya        |Life       |Active       |800000       |2026-02-05 |
+|P005     |C002       |Priya        |Life       |Renewed      |900000       |2026-07-20 |
+|P006     |C003       |Arjun        |Vehicle    |Active       |300000       |2026-03-12 |
+|P007     |C003       |Arjun        |Vehicle    |Expired      |250000       |2026-05-18 |
+|P008     |C003       |Arjun        |Vehicle    |Active       |350000       |2026-08-25 |
+|P009     |C004       |Teja         |Health     |Active       |450000       |2026-04-10 |
+|P010     |C004       |Teja         |Health     |Renewed      |500000       |2026-09-01 |
++---------+-----------+-------------+-----------+-------------+-------------+-----------+
+
+
+========== LATEST POLICY PER CUSTOMER ==========
++-----------+-------------+---------+-----------+-------------+-------------+-----------+
+|customer_id|customer_name|policy_id|policy_type|policy_status|policy_amount|policy_date|
++-----------+-------------+---------+-----------+-------------+-------------+-----------+
+|C001       |Ravi         |P003     |Health     |Active       |600000       |2026-09-10 |
+|C002       |Priya        |P005     |Life       |Renewed      |900000       |2026-07-20 |
+|C003       |Arjun        |P008     |Vehicle    |Active       |350000       |2026-08-25 |
+|C004       |Teja         |P010     |Health     |Renewed      |500000       |2026-09-01 |
++-----------+-------------+---------+-----------+-------------+-------------+-----------+
+
+
+========== LAG AND LEAD ==========
++-----------+-------------+---------+-------------+-----------+----------------------+------------------+
+|customer_id|customer_name|policy_id|policy_amount|policy_date|previous_policy_amount|next_policy_amount|
++-----------+-------------+---------+-------------+-----------+----------------------+------------------+
+|C001       |Ravi         |P001     |500000       |2026-01-10 |NULL                  |550000            |
+|C001       |Ravi         |P002     |550000       |2026-06-15 |500000                |600000            |
+|C001       |Ravi         |P003     |600000       |2026-09-10 |550000                |NULL              |
+|C002       |Priya        |P004     |800000       |2026-02-05 |NULL                  |900000            |
+|C002       |Priya        |P005     |900000       |2026-07-20 |800000                |NULL              |
+|C003       |Arjun        |P006     |300000       |2026-03-12 |NULL                  |250000            |
+|C003       |Arjun        |P007     |250000       |2026-05-18 |300000                |350000            |
+|C003       |Arjun        |P008     |350000       |2026-08-25 |250000                |NULL              |
+|C004       |Teja         |P009     |450000       |2026-04-10 |NULL                  |500000            |
+|C004       |Teja         |P010     |500000       |2026-09-01 |450000                |NULL              |
++-----------+-------------+---------+-------------+-----------+----------------------+------------------+
+
+
+========== FINAL STATISTICS ==========
+Total Students  : 12
+Total Policies  : 10
+Total Courses   : 3
+Total Customers : 4
+
+DAY 17 COMPLETED SUCCESSFULLY
+[success] elapsed time: 14 s
+[0J

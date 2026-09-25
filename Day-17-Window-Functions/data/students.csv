@@ -1,0 +1,13 @@
+student_id,student_name,course,marks
+S001,Ravi,Scala,88
+S002,Priya,Scala,95
+S003,Arjun,Scala,82
+S004,Teja,Scala,95
+S005,Sneha,Spark,91
+S006,Kiran,Spark,85
+S007,Manoj,Spark,91
+S008,Anu,Spark,78
+S009,Varun,Hadoop,89
+S010,Divya,Hadoop,94
+S011,Meena,Hadoop,89
+S012,Rahul,Hadoop,76
