@@ -1,0 +1,16 @@
+patient_id,patient_name,department,doctor,visit_type,revenue
+P001,Ravi,Cardiology,Dr. Kumar,Consultation,5000
+P002,Priya,Cardiology,Dr. Kumar,Surgery,45000
+P003,Arjun,Neurology,Dr. Mehta,Consultation,7000
+P004,Teja,Orthopedics,Dr. Rao,Surgery,30000
+P005,Sneha,Cardiology,Dr. Kumar,Consultation,6000
+P006,Kiran,Neurology,Dr. Mehta,Surgery,55000
+P007,Manoj,Orthopedics,Dr. Rao,Consultation,4500
+P008,Anu,Pediatrics,Dr. Singh,Consultation,3500
+P009,Varun,Neurology,Dr. Mehta,Consultation,8000
+P010,Divya,Cardiology,Dr. Kumar,Surgery,60000
+P011,Meena,Pediatrics,Dr. Singh,Surgery,25000
+P012,Rahul,Orthopedics,Dr. Rao,Surgery,40000
+P013,Kavya,Neurology,Dr. Mehta,Consultation,6500
+P014,Suresh,Cardiology,Dr. Kumar,Consultation,5500
+P015,Neha,Pediatrics,Dr. Singh,Consultation,4000

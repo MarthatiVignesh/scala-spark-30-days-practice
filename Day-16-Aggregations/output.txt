@@ -1,0 +1,141 @@
+[info] running (fork) Day16Aggregations 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/25 10:15:49 INFO SparkContext: Running Spark version 3.5.3
+26/09/25 10:15:49 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/25 10:15:49 INFO SparkContext: Java version 17.0.20.1
+26/09/25 10:15:49 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/25 10:15:49 INFO ResourceUtils: ==============================================================
+26/09/25 10:15:49 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/25 10:15:49 INFO ResourceUtils: ==============================================================
+26/09/25 10:15:49 INFO SparkContext: Submitted application: Day 16 - Aggregations
+26/09/25 10:15:49 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/25 10:15:49 INFO ResourceProfile: Limiting resource is cpu
+26/09/25 10:15:49 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/25 10:15:49 INFO SecurityManager: Changing view acls to: sri
+26/09/25 10:15:49 INFO SecurityManager: Changing modify acls to: sri
+26/09/25 10:15:49 INFO SecurityManager: Changing view acls groups to: 
+26/09/25 10:15:49 INFO SecurityManager: Changing modify acls groups to: 
+26/09/25 10:15:49 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: sri; groups with view permissions: EMPTY; users with modify permissions: sri; groups with modify permissions: EMPTY
+26/09/25 10:15:49 INFO Utils: Successfully started service 'sparkDriver' on port 40763.
+26/09/25 10:15:49 INFO SparkEnv: Registering MapOutputTracker
+26/09/25 10:15:50 INFO SparkEnv: Registering BlockManagerMaster
+26/09/25 10:15:50 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/25 10:15:50 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/25 10:15:50 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/25 10:15:50 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-aa0e660b-a6cd-4de1-bc89-d53de5c05a7c
+26/09/25 10:15:50 INFO MemoryStore: MemoryStore started with capacity 987.6 MiB
+26/09/25 10:15:50 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/25 10:15:50 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+26/09/25 10:15:50 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/25 10:15:50 INFO Executor: Starting executor ID driver on host localhost
+26/09/25 10:15:50 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/25 10:15:50 INFO Executor: Java version 17.0.20.1
+26/09/25 10:15:50 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/09/25 10:15:50 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@176996c3 for default.
+26/09/25 10:15:50 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 39783.
+26/09/25 10:15:50 INFO NettyBlockTransferService: Server created on localhost:39783
+26/09/25 10:15:50 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/25 10:15:50 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, localhost, 39783, None)
+26/09/25 10:15:50 INFO BlockManagerMasterEndpoint: Registering block manager localhost:39783 with 987.6 MiB RAM, BlockManagerId(driver, localhost, 39783, None)
+26/09/25 10:15:50 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, localhost, 39783, None)
+26/09/25 10:15:50 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, localhost, 39783, None)
+
+===== DAY 16 - AGGREGATIONS =====
+
+--- Hospital Revenue Data ---
++----------+------------+-----------+---------+------------+-------+
+|patient_id|patient_name|department |doctor   |visit_type  |revenue|
++----------+------------+-----------+---------+------------+-------+
+|P001      |Ravi        |Cardiology |Dr. Kumar|Consultation|5000   |
+|P002      |Priya       |Cardiology |Dr. Kumar|Surgery     |45000  |
+|P003      |Arjun       |Neurology  |Dr. Mehta|Consultation|7000   |
+|P004      |Teja        |Orthopedics|Dr. Rao  |Surgery     |30000  |
+|P005      |Sneha       |Cardiology |Dr. Kumar|Consultation|6000   |
+|P006      |Kiran       |Neurology  |Dr. Mehta|Surgery     |55000  |
+|P007      |Manoj       |Orthopedics|Dr. Rao  |Consultation|4500   |
+|P008      |Anu         |Pediatrics |Dr. Singh|Consultation|3500   |
+|P009      |Varun       |Neurology  |Dr. Mehta|Consultation|8000   |
+|P010      |Divya       |Cardiology |Dr. Kumar|Surgery     |60000  |
+|P011      |Meena       |Pediatrics |Dr. Singh|Surgery     |25000  |
+|P012      |Rahul       |Orthopedics|Dr. Rao  |Surgery     |40000  |
+|P013      |Kavya       |Neurology  |Dr. Mehta|Consultation|6500   |
+|P014      |Suresh      |Cardiology |Dr. Kumar|Consultation|5500   |
+|P015      |Neha        |Pediatrics |Dr. Singh|Consultation|4000   |
++----------+------------+-----------+---------+------------+-------+
+
+
+--- Schema ---
+root
+ |-- patient_id: string (nullable = true)
+ |-- patient_name: string (nullable = true)
+ |-- department: string (nullable = true)
+ |-- doctor: string (nullable = true)
+ |-- visit_type: string (nullable = true)
+ |-- revenue: integer (nullable = true)
+
+
+--- Basic Aggregations ---
++-------------+-------------+------------------+---------------+---------------+
+|patient_count|total_revenue|average_revenue   |minimum_revenue|maximum_revenue|
++-------------+-------------+------------------+---------------+---------------+
+|15           |305000       |20333.333333333332|3500           |60000          |
++-------------+-------------+------------------+---------------+---------------+
+
+
+--- Department-Wise Revenue Statistics ---
++-----------+-------------+-------------+------------------+---------------+---------------+
+|department |patient_count|total_revenue|average_revenue   |minimum_revenue|maximum_revenue|
++-----------+-------------+-------------+------------------+---------------+---------------+
+|Cardiology |5            |121500       |24300.0           |5000           |60000          |
+|Neurology  |4            |76500        |19125.0           |6500           |55000          |
+|Orthopedics|3            |74500        |24833.333333333332|4500           |40000          |
+|Pediatrics |3            |32500        |10833.333333333334|3500           |25000          |
++-----------+-------------+-------------+------------------+---------------+---------------+
+
+
+--- Department and Visit Type Statistics ---
++-----------+------------+-----------+-------------+-----------------+
+|department |visit_type  |visit_count|total_revenue|average_revenue  |
++-----------+------------+-----------+-------------+-----------------+
+|Cardiology |Consultation|3          |16500        |5500.0           |
+|Cardiology |Surgery     |2          |105000       |52500.0          |
+|Neurology  |Consultation|3          |21500        |7166.666666666667|
+|Neurology  |Surgery     |1          |55000        |55000.0          |
+|Orthopedics|Consultation|1          |4500         |4500.0           |
+|Orthopedics|Surgery     |2          |70000        |35000.0          |
+|Pediatrics |Consultation|2          |7500         |3750.0           |
+|Pediatrics |Surgery     |1          |25000        |25000.0          |
++-----------+------------+-----------+-------------+-----------------+
+
+
+--- Departments With Total Revenue > 50000 ---
++-----------+-------------+-------------+------------------+---------------+---------------+
+|department |patient_count|total_revenue|average_revenue   |minimum_revenue|maximum_revenue|
++-----------+-------------+-------------+------------------+---------------+---------------+
+|Cardiology |5            |121500       |24300.0           |5000           |60000          |
+|Neurology  |4            |76500        |19125.0           |6500           |55000          |
+|Orthopedics|3            |74500        |24833.333333333332|4500           |40000          |
++-----------+-------------+-------------+------------------+---------------+---------------+
+
+
+--- Doctor-Wise Revenue Statistics ---
++---------+-------------+-------------+------------------+
+|doctor   |patient_count|total_revenue|average_revenue   |
++---------+-------------+-------------+------------------+
+|Dr. Kumar|5            |121500       |24300.0           |
+|Dr. Mehta|4            |76500        |19125.0           |
+|Dr. Rao  |3            |74500        |24833.333333333332|
+|Dr. Singh|3            |32500        |10833.333333333334|
++---------+-------------+-------------+------------------+
+
+
+--- Final Statistics ---
+Total Patients : 15
+Total Revenue : 305000
+Average Revenue : 20333.333333333332
+Minimum Revenue : 3500
+Maximum Revenue : 60000
+
+DAY 16 COMPLETED SUCCESSFULLY
+[success] elapsed time: 13 s
+[0J
