@@ -1,0 +1,186 @@
+[info] running (fork) Day20FileFormatsOutput 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/30 00:03:35 INFO SparkContext: Running Spark version 3.5.3
+26/09/30 00:03:35 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/30 00:03:35 INFO SparkContext: Java version 17.0.20.1
+26/09/30 00:03:35 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/30 00:03:35 INFO ResourceUtils: ==============================================================
+26/09/30 00:03:35 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/30 00:03:35 INFO ResourceUtils: ==============================================================
+26/09/30 00:03:35 INFO SparkContext: Submitted application: Day20FileFormatsOutput
+26/09/30 00:03:35 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/30 00:03:35 INFO ResourceProfile: Limiting resource is cpu
+26/09/30 00:03:35 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/30 00:03:35 INFO SecurityManager: Changing view acls to: sri
+26/09/30 00:03:35 INFO SecurityManager: Changing modify acls to: sri
+26/09/30 00:03:35 INFO SecurityManager: Changing view acls groups to: 
+26/09/30 00:03:35 INFO SecurityManager: Changing modify acls groups to: 
+26/09/30 00:03:35 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: sri; groups with view permissions: EMPTY; users with modify permissions: sri; groups with modify permissions: EMPTY
+26/09/30 00:03:36 INFO Utils: Successfully started service 'sparkDriver' on port 39179.
+26/09/30 00:03:36 INFO SparkEnv: Registering MapOutputTracker
+26/09/30 00:03:36 INFO SparkEnv: Registering BlockManagerMaster
+26/09/30 00:03:36 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/30 00:03:36 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/30 00:03:36 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/30 00:03:36 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-f214a448-03e0-40b6-a2f6-dfd83d46cf38
+26/09/30 00:03:36 INFO MemoryStore: MemoryStore started with capacity 987.6 MiB
+26/09/30 00:03:36 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/30 00:03:36 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+26/09/30 00:03:36 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/30 00:03:36 INFO Executor: Starting executor ID driver on host localhost
+26/09/30 00:03:36 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/30 00:03:36 INFO Executor: Java version 17.0.20.1
+26/09/30 00:03:36 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/09/30 00:03:36 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@1cc680e for default.
+26/09/30 00:03:36 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 37187.
+26/09/30 00:03:36 INFO NettyBlockTransferService: Server created on localhost:37187
+26/09/30 00:03:36 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/30 00:03:36 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, localhost, 37187, None)
+26/09/30 00:03:36 INFO BlockManagerMasterEndpoint: Registering block manager localhost:37187 with 987.6 MiB RAM, BlockManagerId(driver, localhost, 37187, None)
+26/09/30 00:03:36 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, localhost, 37187, None)
+26/09/30 00:03:36 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, localhost, 37187, None)
+
+================ READ CSV ================
++-------+-----------+----------+-----------+------+----------+
+|sale_id|customer_id|product   |category   |amount|sale_date |
++-------+-----------+----------+-----------+------+----------+
+|S001   |C001       |Laptop    |Electronics|55000 |2026-09-01|
+|S002   |C002       |Phone     |Electronics|30000 |2026-09-01|
+|S003   |C001       |Mouse     |Accessories|1500  |2026-09-02|
+|S004   |C003       |Keyboard  |Accessories|2500  |2026-09-02|
+|S005   |C004       |Monitor   |Electronics|12000 |2026-09-03|
+|S006   |C005       |Headphones|Accessories|3500  |2026-09-03|
+|S007   |C006       |Tablet    |Electronics|20000 |2026-09-04|
+|S008   |C002       |Mouse     |Accessories|1500  |2026-09-04|
+|S009   |C007       |Laptop    |Electronics|55000 |2026-09-05|
+|S010   |C008       |Keyboard  |Accessories|2500  |2026-09-05|
+|S011   |C003       |Phone     |Electronics|30000 |2026-09-06|
+|S012   |C009       |Monitor   |Electronics|12000 |2026-09-06|
+|S013   |C001       |Headphones|Accessories|3500  |2026-09-07|
+|S014   |C004       |Laptop    |Electronics|55000 |2026-09-07|
+|S015   |C005       |Mouse     |Accessories|1500  |2026-09-08|
++-------+-----------+----------+-----------+------+----------+
+
+CSV Records: 15
+
+================ WRITE CSV ================
+CSV output written to: output/csv
+
+================ WRITE JSON ================
+JSON output written to: output/json
+
+================ WRITE PARQUET ================
+Parquet output written to: output/parquet
+
+================ READ PARQUET ================
++-------+-----------+----------+-----------+------+----------+
+|sale_id|customer_id|product   |category   |amount|sale_date |
++-------+-----------+----------+-----------+------+----------+
+|S001   |C001       |Laptop    |Electronics|55000 |2026-09-01|
+|S002   |C002       |Phone     |Electronics|30000 |2026-09-01|
+|S003   |C001       |Mouse     |Accessories|1500  |2026-09-02|
+|S004   |C003       |Keyboard  |Accessories|2500  |2026-09-02|
+|S005   |C004       |Monitor   |Electronics|12000 |2026-09-03|
+|S006   |C005       |Headphones|Accessories|3500  |2026-09-03|
+|S007   |C006       |Tablet    |Electronics|20000 |2026-09-04|
+|S008   |C002       |Mouse     |Accessories|1500  |2026-09-04|
+|S009   |C007       |Laptop    |Electronics|55000 |2026-09-05|
+|S010   |C008       |Keyboard  |Accessories|2500  |2026-09-05|
+|S011   |C003       |Phone     |Electronics|30000 |2026-09-06|
+|S012   |C009       |Monitor   |Electronics|12000 |2026-09-06|
+|S013   |C001       |Headphones|Accessories|3500  |2026-09-07|
+|S014   |C004       |Laptop    |Electronics|55000 |2026-09-07|
+|S015   |C005       |Mouse     |Accessories|1500  |2026-09-08|
++-------+-----------+----------+-----------+------+----------+
+
+Parquet Records: 15
+
+================ ADD PARTITION COLUMNS ================
++-------+-----------+----------+-----------+------+----------+----+-----+---+
+|sale_id|customer_id|product   |category   |amount|sale_date |year|month|day|
++-------+-----------+----------+-----------+------+----------+----+-----+---+
+|S001   |C001       |Laptop    |Electronics|55000 |2026-09-01|2026|9    |1  |
+|S002   |C002       |Phone     |Electronics|30000 |2026-09-01|2026|9    |1  |
+|S003   |C001       |Mouse     |Accessories|1500  |2026-09-02|2026|9    |2  |
+|S004   |C003       |Keyboard  |Accessories|2500  |2026-09-02|2026|9    |2  |
+|S005   |C004       |Monitor   |Electronics|12000 |2026-09-03|2026|9    |3  |
+|S006   |C005       |Headphones|Accessories|3500  |2026-09-03|2026|9    |3  |
+|S007   |C006       |Tablet    |Electronics|20000 |2026-09-04|2026|9    |4  |
+|S008   |C002       |Mouse     |Accessories|1500  |2026-09-04|2026|9    |4  |
+|S009   |C007       |Laptop    |Electronics|55000 |2026-09-05|2026|9    |5  |
+|S010   |C008       |Keyboard  |Accessories|2500  |2026-09-05|2026|9    |5  |
+|S011   |C003       |Phone     |Electronics|30000 |2026-09-06|2026|9    |6  |
+|S012   |C009       |Monitor   |Electronics|12000 |2026-09-06|2026|9    |6  |
+|S013   |C001       |Headphones|Accessories|3500  |2026-09-07|2026|9    |7  |
+|S014   |C004       |Laptop    |Electronics|55000 |2026-09-07|2026|9    |7  |
+|S015   |C005       |Mouse     |Accessories|1500  |2026-09-08|2026|9    |8  |
++-------+-----------+----------+-----------+------+----------+----+-----+---+
+
+
+================ REPARTITION ================
+Partitions after repartition: 1
+
+================ WRITE PARTITIONED PARQUET ================
+Partitioned Parquet output written to:
+output/partitioned-sales
+
+================ FILE LAYOUT ================
+Partitioned output follows the structure:
+year=<value>/month=<value>/day=<value>/
+Each Spark partition can produce an output part file.
+The number of output files depends on the number of Spark partitions.
+Repartition controls the distribution of records before writing.
+
+================ READ PARTITIONED PARQUET ================
++-------+-----------+----------+-----------+------+----------+----+-----+---+
+|sale_id|customer_id|product   |category   |amount|sale_date |year|month|day|
++-------+-----------+----------+-----------+------+----------+----+-----+---+
+|S003   |C001       |Mouse     |Accessories|1500  |2026-09-02|2026|9    |2  |
+|S004   |C003       |Keyboard  |Accessories|2500  |2026-09-02|2026|9    |2  |
+|S011   |C003       |Phone     |Electronics|30000 |2026-09-06|2026|9    |6  |
+|S012   |C009       |Monitor   |Electronics|12000 |2026-09-06|2026|9    |6  |
+|S001   |C001       |Laptop    |Electronics|55000 |2026-09-01|2026|9    |1  |
+|S002   |C002       |Phone     |Electronics|30000 |2026-09-01|2026|9    |1  |
+|S005   |C004       |Monitor   |Electronics|12000 |2026-09-03|2026|9    |3  |
+|S006   |C005       |Headphones|Accessories|3500  |2026-09-03|2026|9    |3  |
+|S013   |C001       |Headphones|Accessories|3500  |2026-09-07|2026|9    |7  |
+|S014   |C004       |Laptop    |Electronics|55000 |2026-09-07|2026|9    |7  |
+|S009   |C007       |Laptop    |Electronics|55000 |2026-09-05|2026|9    |5  |
+|S010   |C008       |Keyboard  |Accessories|2500  |2026-09-05|2026|9    |5  |
+|S007   |C006       |Tablet    |Electronics|20000 |2026-09-04|2026|9    |4  |
+|S008   |C002       |Mouse     |Accessories|1500  |2026-09-04|2026|9    |4  |
+|S015   |C005       |Mouse     |Accessories|1500  |2026-09-08|2026|9    |8  |
++-------+-----------+----------+-----------+------+----------+----+-----+---+
+
+Partitioned Parquet Records: 15
+
+================ PARTITION SUMMARY ================
++----+-----+---+------------+------------+
+|year|month|day|record_count|total_amount|
++----+-----+---+------------+------------+
+|2026|9    |1  |2           |85000       |
+|2026|9    |2  |2           |4000        |
+|2026|9    |3  |2           |15500       |
+|2026|9    |4  |2           |21500       |
+|2026|9    |5  |2           |57500       |
+|2026|9    |6  |2           |42000       |
+|2026|9    |7  |2           |58500       |
+|2026|9    |8  |1           |1500        |
++----+-----+---+------------+------------+
+
+
+================ FINAL PROJECT EVIDENCE ================
+Input CSV Records           : 15
+Parquet Records             : 15
+Partitioned Parquet Records : 15
+Partitions after repartition: 1
+
+Formats written successfully:
+1. CSV
+2. JSON
+3. Parquet
+4. Partitioned Parquet
+
+DAY 20 COMPLETED SUCCESSFULLY
+[success] elapsed time: 17 s
+[0J

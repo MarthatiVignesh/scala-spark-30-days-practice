@@ -1,0 +1,15 @@
+{"sale_id":"S001","customer_id":"C001","product":"Laptop","category":"Electronics","amount":55000,"sale_date":"2026-09-01"}
+{"sale_id":"S002","customer_id":"C002","product":"Phone","category":"Electronics","amount":30000,"sale_date":"2026-09-01"}
+{"sale_id":"S003","customer_id":"C001","product":"Mouse","category":"Accessories","amount":1500,"sale_date":"2026-09-02"}
+{"sale_id":"S004","customer_id":"C003","product":"Keyboard","category":"Accessories","amount":2500,"sale_date":"2026-09-02"}
+{"sale_id":"S005","customer_id":"C004","product":"Monitor","category":"Electronics","amount":12000,"sale_date":"2026-09-03"}
+{"sale_id":"S006","customer_id":"C005","product":"Headphones","category":"Accessories","amount":3500,"sale_date":"2026-09-03"}
+{"sale_id":"S007","customer_id":"C006","product":"Tablet","category":"Electronics","amount":20000,"sale_date":"2026-09-04"}
+{"sale_id":"S008","customer_id":"C002","product":"Mouse","category":"Accessories","amount":1500,"sale_date":"2026-09-04"}
+{"sale_id":"S009","customer_id":"C007","product":"Laptop","category":"Electronics","amount":55000,"sale_date":"2026-09-05"}
+{"sale_id":"S010","customer_id":"C008","product":"Keyboard","category":"Accessories","amount":2500,"sale_date":"2026-09-05"}
+{"sale_id":"S011","customer_id":"C003","product":"Phone","category":"Electronics","amount":30000,"sale_date":"2026-09-06"}
+{"sale_id":"S012","customer_id":"C009","product":"Monitor","category":"Electronics","amount":12000,"sale_date":"2026-09-06"}
+{"sale_id":"S013","customer_id":"C001","product":"Headphones","category":"Accessories","amount":3500,"sale_date":"2026-09-07"}
+{"sale_id":"S014","customer_id":"C004","product":"Laptop","category":"Electronics","amount":55000,"sale_date":"2026-09-07"}
+{"sale_id":"S015","customer_id":"C005","product":"Mouse","category":"Accessories","amount":1500,"sale_date":"2026-09-08"}

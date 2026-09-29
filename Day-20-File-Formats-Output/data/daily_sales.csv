@@ -1,0 +1,16 @@
+sale_id,customer_id,product,category,amount,sale_date
+S001,C001,Laptop,Electronics,55000,2026-09-01
+S002,C002,Phone,Electronics,30000,2026-09-01
+S003,C001,Mouse,Accessories,1500,2026-09-02
+S004,C003,Keyboard,Accessories,2500,2026-09-02
+S005,C004,Monitor,Electronics,12000,2026-09-03
+S006,C005,Headphones,Accessories,3500,2026-09-03
+S007,C006,Tablet,Electronics,20000,2026-09-04
+S008,C002,Mouse,Accessories,1500,2026-09-04
+S009,C007,Laptop,Electronics,55000,2026-09-05
+S010,C008,Keyboard,Accessories,2500,2026-09-05
+S011,C003,Phone,Electronics,30000,2026-09-06
+S012,C009,Monitor,Electronics,12000,2026-09-06
+S013,C001,Headphones,Accessories,3500,2026-09-07
+S014,C004,Laptop,Electronics,55000,2026-09-07
+S015,C005,Mouse,Accessories,1500,2026-09-08
