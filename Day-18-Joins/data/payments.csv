@@ -1,0 +1,7 @@
+payment_id,order_id,payment_method,payment_status,paid_amount
+P001,O001,UPI,Paid,55000
+P002,O002,CreditCard,Paid,30000
+P003,O003,UPI,Paid,1500
+P004,O004,DebitCard,Paid,2500
+P005,O006,UPI,Paid,20000
+P006,O999,Cash,Paid,5000

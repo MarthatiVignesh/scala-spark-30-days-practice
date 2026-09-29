@@ -1,0 +1,8 @@
+order_id,customer_id,product,amount,order_date
+O001,C001,Laptop,55000,2026-09-01
+O002,C002,Phone,30000,2026-09-02
+O003,C001,Mouse,1500,2026-09-03
+O004,C003,Keyboard,2500,2026-09-04
+O005,C006,Monitor,12000,2026-09-05
+O006,C009,Tablet,20000,2026-09-06
+O007,C004,Headphones,3500,2026-09-07

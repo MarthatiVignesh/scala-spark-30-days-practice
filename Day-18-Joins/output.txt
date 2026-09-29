@@ -1,0 +1,277 @@
+[info] running (fork) Day18Joins 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/29 23:29:18 INFO SparkContext: Running Spark version 3.5.3
+26/09/29 23:29:18 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/29 23:29:18 INFO SparkContext: Java version 17.0.20.1
+26/09/29 23:29:18 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/29 23:29:19 INFO ResourceUtils: ==============================================================
+26/09/29 23:29:19 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/29 23:29:19 INFO ResourceUtils: ==============================================================
+26/09/29 23:29:19 INFO SparkContext: Submitted application: Day18Joins
+26/09/29 23:29:19 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/29 23:29:19 INFO ResourceProfile: Limiting resource is cpu
+26/09/29 23:29:19 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/29 23:29:19 INFO SecurityManager: Changing view acls to: sri
+26/09/29 23:29:19 INFO SecurityManager: Changing modify acls to: sri
+26/09/29 23:29:19 INFO SecurityManager: Changing view acls groups to: 
+26/09/29 23:29:19 INFO SecurityManager: Changing modify acls groups to: 
+26/09/29 23:29:19 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: sri; groups with view permissions: EMPTY; users with modify permissions: sri; groups with modify permissions: EMPTY
+26/09/29 23:29:19 INFO Utils: Successfully started service 'sparkDriver' on port 35381.
+26/09/29 23:29:19 INFO SparkEnv: Registering MapOutputTracker
+26/09/29 23:29:19 INFO SparkEnv: Registering BlockManagerMaster
+26/09/29 23:29:19 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/29 23:29:19 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/29 23:29:19 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/29 23:29:19 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-bb165829-b632-45f0-af82-d7ba91d94b4d
+26/09/29 23:29:19 INFO MemoryStore: MemoryStore started with capacity 987.6 MiB
+26/09/29 23:29:19 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/29 23:29:19 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+26/09/29 23:29:19 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/29 23:29:19 INFO Executor: Starting executor ID driver on host localhost
+26/09/29 23:29:19 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/29 23:29:19 INFO Executor: Java version 17.0.20.1
+26/09/29 23:29:19 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/09/29 23:29:19 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@1cc680e for default.
+26/09/29 23:29:19 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 39131.
+26/09/29 23:29:19 INFO NettyBlockTransferService: Server created on localhost:39131
+26/09/29 23:29:19 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/29 23:29:19 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, localhost, 39131, None)
+26/09/29 23:29:19 INFO BlockManagerMasterEndpoint: Registering block manager localhost:39131 with 987.6 MiB RAM, BlockManagerId(driver, localhost, 39131, None)
+26/09/29 23:29:19 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, localhost, 39131, None)
+26/09/29 23:29:19 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, localhost, 39131, None)
+
+================ CUSTOMERS ================
++-----------+-------------+---------+-------+
+|customer_id|customer_name|city     |segment|
++-----------+-------------+---------+-------+
+|C001       |Ravi         |Hyderabad|Premium|
+|C002       |Priya        |Bangalore|Regular|
+|C003       |Arjun        |Chennai  |Premium|
+|C004       |Teja         |Pune     |Regular|
+|C005       |Sneha        |Delhi    |Premium|
+|C006       |Kiran        |Mumbai   |Regular|
+|C007       |Manoj        |Hyderabad|Regular|
+|C008       |Anu          |Chennai  |Premium|
++-----------+-------------+---------+-------+
+
+
+================ ORDERS ================
++--------+-----------+----------+------+----------+
+|order_id|customer_id|product   |amount|order_date|
++--------+-----------+----------+------+----------+
+|O001    |C001       |Laptop    |55000 |2026-09-01|
+|O002    |C002       |Phone     |30000 |2026-09-02|
+|O003    |C001       |Mouse     |1500  |2026-09-03|
+|O004    |C003       |Keyboard  |2500  |2026-09-04|
+|O005    |C006       |Monitor   |12000 |2026-09-05|
+|O006    |C009       |Tablet    |20000 |2026-09-06|
+|O007    |C004       |Headphones|3500  |2026-09-07|
++--------+-----------+----------+------+----------+
+
+
+================ PAYMENTS ================
++----------+--------+--------------+--------------+-----------+
+|payment_id|order_id|payment_method|payment_status|paid_amount|
++----------+--------+--------------+--------------+-----------+
+|P001      |O001    |UPI           |Paid          |55000      |
+|P002      |O002    |CreditCard    |Paid          |30000      |
+|P003      |O003    |UPI           |Paid          |1500       |
+|P004      |O004    |DebitCard     |Paid          |2500       |
+|P005      |O006    |UPI           |Paid          |20000      |
+|P006      |O999    |Cash          |Paid          |5000       |
++----------+--------+--------------+--------------+-----------+
+
+
+================ INNER JOIN ================
++--------+-----------+-------------+---------+----------+------+
+|order_id|customer_id|customer_name|city     |product   |amount|
++--------+-----------+-------------+---------+----------+------+
+|O001    |C001       |Ravi         |Hyderabad|Laptop    |55000 |
+|O002    |C002       |Priya        |Bangalore|Phone     |30000 |
+|O003    |C001       |Ravi         |Hyderabad|Mouse     |1500  |
+|O004    |C003       |Arjun        |Chennai  |Keyboard  |2500  |
+|O005    |C006       |Kiran        |Mumbai   |Monitor   |12000 |
+|O007    |C004       |Teja         |Pune     |Headphones|3500  |
++--------+-----------+-------------+---------+----------+------+
+
+
+================ LEFT JOIN ================
++--------+-----------+-------------+---------+----------+------+
+|order_id|customer_id|customer_name|city     |product   |amount|
++--------+-----------+-------------+---------+----------+------+
+|O001    |C001       |Ravi         |Hyderabad|Laptop    |55000 |
+|O002    |C002       |Priya        |Bangalore|Phone     |30000 |
+|O003    |C001       |Ravi         |Hyderabad|Mouse     |1500  |
+|O004    |C003       |Arjun        |Chennai  |Keyboard  |2500  |
+|O005    |C006       |Kiran        |Mumbai   |Monitor   |12000 |
+|O006    |C009       |NULL         |NULL     |Tablet    |20000 |
+|O007    |C004       |Teja         |Pune     |Headphones|3500  |
++--------+-----------+-------------+---------+----------+------+
+
+
+================ LEFT JOIN + NULL HANDLING ================
++--------+-----------+----------------+------------+----------+------+
+|order_id|customer_id|customer_name   |city        |product   |amount|
++--------+-----------+----------------+------------+----------+------+
+|O001    |C001       |Ravi            |Hyderabad   |Laptop    |55000 |
+|O002    |C002       |Priya           |Bangalore   |Phone     |30000 |
+|O003    |C001       |Ravi            |Hyderabad   |Mouse     |1500  |
+|O004    |C003       |Arjun           |Chennai     |Keyboard  |2500  |
+|O005    |C006       |Kiran           |Mumbai      |Monitor   |12000 |
+|O006    |C009       |UNKNOWN CUSTOMER|UNKNOWN CITY|Tablet    |20000 |
+|O007    |C004       |Teja            |Pune        |Headphones|3500  |
++--------+-----------+----------------+------------+----------+------+
+
+
+================ RIGHT JOIN ================
++--------+-----------+-------------+---------+----------+------+
+|order_id|customer_id|customer_name|city     |product   |amount|
++--------+-----------+-------------+---------+----------+------+
+|O003    |C001       |Ravi         |Hyderabad|Mouse     |1500  |
+|O001    |C001       |Ravi         |Hyderabad|Laptop    |55000 |
+|O002    |C002       |Priya        |Bangalore|Phone     |30000 |
+|O004    |C003       |Arjun        |Chennai  |Keyboard  |2500  |
+|O007    |C004       |Teja         |Pune     |Headphones|3500  |
+|NULL    |C005       |Sneha        |Delhi    |NULL      |NULL  |
+|O005    |C006       |Kiran        |Mumbai   |Monitor   |12000 |
+|NULL    |C007       |Manoj        |Hyderabad|NULL      |NULL  |
+|NULL    |C008       |Anu          |Chennai  |NULL      |NULL  |
++--------+-----------+-------------+---------+----------+------+
+
+
+================ FULL JOIN ================
++--------+-----------+-------------+---------+----------+------+
+|order_id|customer_id|customer_name|city     |product   |amount|
++--------+-----------+-------------+---------+----------+------+
+|O001    |C001       |Ravi         |Hyderabad|Laptop    |55000 |
+|O003    |C001       |Ravi         |Hyderabad|Mouse     |1500  |
+|O002    |C002       |Priya        |Bangalore|Phone     |30000 |
+|O004    |C003       |Arjun        |Chennai  |Keyboard  |2500  |
+|O007    |C004       |Teja         |Pune     |Headphones|3500  |
+|NULL    |C005       |Sneha        |Delhi    |NULL      |NULL  |
+|O005    |C006       |Kiran        |Mumbai   |Monitor   |12000 |
+|NULL    |C007       |Manoj        |Hyderabad|NULL      |NULL  |
+|NULL    |C008       |Anu          |Chennai  |NULL      |NULL  |
+|O006    |C009       |NULL         |NULL     |Tablet    |20000 |
++--------+-----------+-------------+---------+----------+------+
+
+
+================ ORDERS + PAYMENTS ================
++--------+-----------+----------+------+--------------+--------------+-----------+
+|order_id|customer_id|product   |amount|payment_method|payment_status|paid_amount|
++--------+-----------+----------+------+--------------+--------------+-----------+
+|O001    |C001       |Laptop    |55000 |UPI           |Paid          |55000      |
+|O002    |C002       |Phone     |30000 |CreditCard    |Paid          |30000      |
+|O003    |C001       |Mouse     |1500  |UPI           |Paid          |1500       |
+|O004    |C003       |Keyboard  |2500  |DebitCard     |Paid          |2500       |
+|O005    |C006       |Monitor   |12000 |N/A           |NOT PAID      |NULL       |
+|O006    |C009       |Tablet    |20000 |UPI           |Paid          |20000      |
+|O007    |C004       |Headphones|3500  |N/A           |NOT PAID      |NULL       |
++--------+-----------+----------+------+--------------+--------------+-----------+
+
+
+================ THREE-WAY JOIN ================
++--------+-----------+-------------+---------+-------+----------+------+--------------+--------------+-----------+
+|order_id|customer_id|customer_name|city     |segment|product   |amount|payment_method|payment_status|paid_amount|
++--------+-----------+-------------+---------+-------+----------+------+--------------+--------------+-----------+
+|O001    |C001       |Ravi         |Hyderabad|Premium|Laptop    |55000 |UPI           |Paid          |55000      |
+|O002    |C002       |Priya        |Bangalore|Regular|Phone     |30000 |CreditCard    |Paid          |30000      |
+|O003    |C001       |Ravi         |Hyderabad|Premium|Mouse     |1500  |UPI           |Paid          |1500       |
+|O004    |C003       |Arjun        |Chennai  |Premium|Keyboard  |2500  |DebitCard     |Paid          |2500       |
+|O005    |C006       |Kiran        |Mumbai   |Regular|Monitor   |12000 |N/A           |NOT PAID      |0          |
+|O006    |C009       |NULL         |NULL     |NULL   |Tablet    |20000 |UPI           |Paid          |20000      |
+|O007    |C004       |Teja         |Pune     |Regular|Headphones|3500  |N/A           |NOT PAID      |0          |
++--------+-----------+-------------+---------+-------+----------+------+--------------+--------------+-----------+
+
+
+================ PHYSICAL PLAN ================
+== Physical Plan ==
+AdaptiveSparkPlan (12)
++- Project (11)
+   +- BroadcastHashJoin LeftOuter BuildRight (10)
+      :- Project (6)
+      :  +- BroadcastHashJoin LeftOuter BuildRight (5)
+      :     :- Scan csv  (1)
+      :     +- BroadcastExchange (4)
+      :        +- Filter (3)
+      :           +- Scan csv  (2)
+      +- BroadcastExchange (9)
+         +- Filter (8)
+            +- Scan csv  (7)
+
+
+(1) Scan csv 
+Output [4]: [order_id#42, customer_id#43, product#44, amount#45]
+Batched: false
+Location: InMemoryFileIndex [file:/home/sri/scala-spark-30-day-practice/Day-18-Joins/data/orders.csv]
+ReadSchema: struct<order_id:string,customer_id:string,product:string,amount:int>
+
+(2) Scan csv 
+Output [4]: [customer_id#17, customer_name#18, city#19, segment#20]
+Batched: false
+Location: InMemoryFileIndex [file:/home/sri/scala-spark-30-day-practice/Day-18-Joins/data/customers.csv]
+PushedFilters: [IsNotNull(customer_id)]
+ReadSchema: struct<customer_id:string,customer_name:string,city:string,segment:string>
+
+(3) Filter
+Input [4]: [customer_id#17, customer_name#18, city#19, segment#20]
+Condition : isnotnull(customer_id#17)
+
+(4) BroadcastExchange
+Input [4]: [customer_id#17, customer_name#18, city#19, segment#20]
+Arguments: HashedRelationBroadcastMode(List(input[0, string, false]),false), [plan_id=752]
+
+(5) BroadcastHashJoin
+Left keys [1]: [customer_id#43]
+Right keys [1]: [customer_id#17]
+Join type: LeftOuter
+Join condition: None
+
+(6) Project
+Output [7]: [order_id#42, customer_id#43, product#44, amount#45, customer_name#18, city#19, segment#20]
+Input [8]: [order_id#42, customer_id#43, product#44, amount#45, customer_id#17, customer_name#18, city#19, segment#20]
+
+(7) Scan csv 
+Output [4]: [order_id#70, payment_method#71, payment_status#72, paid_amount#73]
+Batched: false
+Location: InMemoryFileIndex [file:/home/sri/scala-spark-30-day-practice/Day-18-Joins/data/payments.csv]
+PushedFilters: [IsNotNull(order_id)]
+ReadSchema: struct<order_id:string,payment_method:string,payment_status:string,paid_amount:int>
+
+(8) Filter
+Input [4]: [order_id#70, payment_method#71, payment_status#72, paid_amount#73]
+Condition : isnotnull(order_id#70)
+
+(9) BroadcastExchange
+Input [4]: [order_id#70, payment_method#71, payment_status#72, paid_amount#73]
+Arguments: HashedRelationBroadcastMode(List(input[0, string, false]),false), [plan_id=756]
+
+(10) BroadcastHashJoin
+Left keys [1]: [order_id#42]
+Right keys [1]: [order_id#70]
+Join type: LeftOuter
+Join condition: None
+
+(11) Project
+Output [10]: [order_id#42, customer_id#43, customer_name#18, city#19, segment#20, product#44, amount#45, coalesce(payment_method#71, N/A) AS payment_method#552, coalesce(payment_status#72, NOT PAID) AS payment_status#553, coalesce(paid_amount#73, 0) AS paid_amount#554]
+Input [11]: [order_id#42, customer_id#43, product#44, amount#45, customer_name#18, city#19, segment#20, order_id#70, payment_method#71, payment_status#72, paid_amount#73]
+
+(12) AdaptiveSparkPlan
+Output [10]: [order_id#42, customer_id#43, customer_name#18, city#19, segment#20, product#44, amount#45, payment_method#552, payment_status#553, paid_amount#554]
+Arguments: isFinalPlan=false
+
+
+
+================ FINAL PROJECT EVIDENCE ================
+Customers : 8
+Orders    : 7
+Payments  : 6
+Inner Join Records : 6
+Left Join Records  : 7
+Right Join Records : 9
+Full Join Records  : 10
+Final Joined Records : 7
+
+DAY 18 COMPLETED SUCCESSFULLY
+[success] elapsed time: 17 s
+[0J
