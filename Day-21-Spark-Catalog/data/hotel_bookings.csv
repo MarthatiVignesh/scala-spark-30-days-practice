@@ -1,0 +1,11 @@
+booking_id,customer_name,hotel,city,room_type,check_in,check_out,amount,status
+B001,Ravi,Grand Palace,Hyderabad,Deluxe,2026-09-01,2026-09-03,12000,Confirmed
+B002,Priya,Lake View,Bangalore,Suite,2026-09-02,2026-09-05,18000,Confirmed
+B003,Arjun,Sea Breeze,Chennai,Standard,2026-09-03,2026-09-04,5000,Cancelled
+B004,Teja,Grand Palace,Hyderabad,Suite,2026-09-04,2026-09-07,21000,Confirmed
+B005,Sneha,Mountain Stay,Pune,Deluxe,2026-09-05,2026-09-08,15000,Confirmed
+B006,Kiran,City Inn,Delhi,Standard,2026-09-06,2026-09-07,4000,Confirmed
+B007,Manoj,Lake View,Bangalore,Deluxe,2026-09-07,2026-09-10,13500,Confirmed
+B008,Anu,Sea Breeze,Chennai,Suite,2026-09-08,2026-09-11,16500,Confirmed
+B009,Divya,Grand Palace,Hyderabad,Standard,2026-09-09,2026-09-10,4500,Cancelled
+B010,Karthik,City Inn,Delhi,Deluxe,2026-09-10,2026-09-12,9000,Confirmed

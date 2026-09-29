@@ -1,0 +1,228 @@
+[info] running (fork) Day21SparkCatalog 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/30 00:27:40 INFO SparkContext: Running Spark version 3.5.3
+26/09/30 00:27:40 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/30 00:27:40 INFO SparkContext: Java version 17.0.20.1
+26/09/30 00:27:40 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/30 00:27:40 INFO ResourceUtils: ==============================================================
+26/09/30 00:27:40 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/30 00:27:40 INFO ResourceUtils: ==============================================================
+26/09/30 00:27:40 INFO SparkContext: Submitted application: Day21SparkCatalog
+26/09/30 00:27:40 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/30 00:27:40 INFO ResourceProfile: Limiting resource is cpu
+26/09/30 00:27:40 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/30 00:27:40 INFO SecurityManager: Changing view acls to: sri
+26/09/30 00:27:40 INFO SecurityManager: Changing modify acls to: sri
+26/09/30 00:27:40 INFO SecurityManager: Changing view acls groups to: 
+26/09/30 00:27:40 INFO SecurityManager: Changing modify acls groups to: 
+26/09/30 00:27:40 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: sri; groups with view permissions: EMPTY; users with modify permissions: sri; groups with modify permissions: EMPTY
+26/09/30 00:27:41 INFO Utils: Successfully started service 'sparkDriver' on port 38665.
+26/09/30 00:27:41 INFO SparkEnv: Registering MapOutputTracker
+26/09/30 00:27:41 INFO SparkEnv: Registering BlockManagerMaster
+26/09/30 00:27:41 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/30 00:27:41 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/30 00:27:41 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/30 00:27:41 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-c4136928-fd5f-4528-9732-d608e4ef70aa
+26/09/30 00:27:41 INFO MemoryStore: MemoryStore started with capacity 987.6 MiB
+26/09/30 00:27:41 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/30 00:27:41 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+26/09/30 00:27:41 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/30 00:27:41 INFO Executor: Starting executor ID driver on host localhost
+26/09/30 00:27:41 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/30 00:27:41 INFO Executor: Java version 17.0.20.1
+26/09/30 00:27:41 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/09/30 00:27:41 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@1dc3502b for default.
+26/09/30 00:27:41 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 42419.
+26/09/30 00:27:41 INFO NettyBlockTransferService: Server created on localhost:42419
+26/09/30 00:27:41 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/30 00:27:41 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, localhost, 42419, None)
+26/09/30 00:27:41 INFO BlockManagerMasterEndpoint: Registering block manager localhost:42419 with 987.6 MiB RAM, BlockManagerId(driver, localhost, 42419, None)
+26/09/30 00:27:41 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, localhost, 42419, None)
+26/09/30 00:27:41 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, localhost, 42419, None)
+
+================ READ HOTEL BOOKINGS ================
++----------+-------------+-------------+---------+---------+----------+----------+------+---------+
+|booking_id|customer_name|hotel        |city     |room_type|check_in  |check_out |amount|status   |
++----------+-------------+-------------+---------+---------+----------+----------+------+---------+
+|B001      |Ravi         |Grand Palace |Hyderabad|Deluxe   |2026-09-01|2026-09-03|12000 |Confirmed|
+|B002      |Priya        |Lake View    |Bangalore|Suite    |2026-09-02|2026-09-05|18000 |Confirmed|
+|B003      |Arjun        |Sea Breeze   |Chennai  |Standard |2026-09-03|2026-09-04|5000  |Cancelled|
+|B004      |Teja         |Grand Palace |Hyderabad|Suite    |2026-09-04|2026-09-07|21000 |Confirmed|
+|B005      |Sneha        |Mountain Stay|Pune     |Deluxe   |2026-09-05|2026-09-08|15000 |Confirmed|
+|B006      |Kiran        |City Inn     |Delhi    |Standard |2026-09-06|2026-09-07|4000  |Confirmed|
+|B007      |Manoj        |Lake View    |Bangalore|Deluxe   |2026-09-07|2026-09-10|13500 |Confirmed|
+|B008      |Anu          |Sea Breeze   |Chennai  |Suite    |2026-09-08|2026-09-11|16500 |Confirmed|
+|B009      |Divya        |Grand Palace |Hyderabad|Standard |2026-09-09|2026-09-10|4500  |Cancelled|
+|B010      |Karthik      |City Inn     |Delhi    |Deluxe   |2026-09-10|2026-09-12|9000  |Confirmed|
++----------+-------------+-------------+---------+---------+----------+----------+------+---------+
+
+
+Booking Records: 10
+
+================ DATAFRAME SCHEMA ================
+root
+ |-- booking_id: string (nullable = true)
+ |-- customer_name: string (nullable = true)
+ |-- hotel: string (nullable = true)
+ |-- city: string (nullable = true)
+ |-- room_type: string (nullable = true)
+ |-- check_in: date (nullable = true)
+ |-- check_out: date (nullable = true)
+ |-- amount: integer (nullable = true)
+ |-- status: string (nullable = true)
+
+
+================ CREATE TEMP VIEW ================
+Temporary view created: hotel_bookings_view
+
+================ QUERY TEMP VIEW ================
++----------+-------------+-------------+---------+---------+------+---------+
+|booking_id|customer_name|hotel        |city     |room_type|amount|status   |
++----------+-------------+-------------+---------+---------+------+---------+
+|B004      |Teja         |Grand Palace |Hyderabad|Suite    |21000 |Confirmed|
+|B002      |Priya        |Lake View    |Bangalore|Suite    |18000 |Confirmed|
+|B008      |Anu          |Sea Breeze   |Chennai  |Suite    |16500 |Confirmed|
+|B005      |Sneha        |Mountain Stay|Pune     |Deluxe   |15000 |Confirmed|
+|B007      |Manoj        |Lake View    |Bangalore|Deluxe   |13500 |Confirmed|
+|B001      |Ravi         |Grand Palace |Hyderabad|Deluxe   |12000 |Confirmed|
+|B010      |Karthik      |City Inn     |Delhi    |Deluxe   |9000  |Confirmed|
+|B006      |Kiran        |City Inn     |Delhi    |Standard |4000  |Confirmed|
++----------+-------------+-------------+---------+---------+------+---------+
+
+
+Confirmed Bookings: 8
+
+================ LIST DATABASES ================
++---------+
+|namespace|
++---------+
+|default  |
++---------+
+
+
+================ CREATE DATABASE ================
+Database created/available: hotel_analytics
+
+================ USE DATABASE ================
+Current database: hotel_analytics
+
+================ DROP OLD TABLE ================
+Existing table and warehouse location removed if present.
+
+================ CREATE TABLE ================
+Permanent table created: hotel_analytics.bookings
+
+================ LIST TABLES ================
++---------------+-------------------+-----------+
+|namespace      |tableName          |isTemporary|
++---------------+-------------------+-----------+
+|hotel_analytics|bookings           |false      |
+|               |hotel_bookings_view|true       |
++---------------+-------------------+-----------+
+
+
+================ QUERY TABLE ================
++----------+-------------+-------------+---------+------+---------+
+|booking_id|customer_name|hotel        |city     |amount|status   |
++----------+-------------+-------------+---------+------+---------+
+|B004      |Teja         |Grand Palace |Hyderabad|21000 |Confirmed|
+|B002      |Priya        |Lake View    |Bangalore|18000 |Confirmed|
+|B008      |Anu          |Sea Breeze   |Chennai  |16500 |Confirmed|
+|B005      |Sneha        |Mountain Stay|Pune     |15000 |Confirmed|
+|B007      |Manoj        |Lake View    |Bangalore|13500 |Confirmed|
+|B001      |Ravi         |Grand Palace |Hyderabad|12000 |Confirmed|
+|B010      |Karthik      |City Inn     |Delhi    |9000  |Confirmed|
+|B006      |Kiran        |City Inn     |Delhi    |4000  |Confirmed|
++----------+-------------+-------------+---------+------+---------+
+
+
+Confirmed Table Records: 8
+
+================ DESCRIBE TABLE ================
++-------------+---------+-------+
+|col_name     |data_type|comment|
++-------------+---------+-------+
+|booking_id   |string   |NULL   |
+|customer_name|string   |NULL   |
+|hotel        |string   |NULL   |
+|city         |string   |NULL   |
+|room_type    |string   |NULL   |
+|check_in     |date     |NULL   |
+|check_out    |date     |NULL   |
+|amount       |int      |NULL   |
+|status       |string   |NULL   |
++-------------+---------+-------+
+
+
+================ TABLE METADATA ================
++----------------------------+-----------------------------------------------------------------------------------------------------------+-------+
+|col_name                    |data_type                                                                                                  |comment|
++----------------------------+-----------------------------------------------------------------------------------------------------------+-------+
+|booking_id                  |string                                                                                                     |NULL   |
+|customer_name               |string                                                                                                     |NULL   |
+|hotel                       |string                                                                                                     |NULL   |
+|city                        |string                                                                                                     |NULL   |
+|room_type                   |string                                                                                                     |NULL   |
+|check_in                    |date                                                                                                       |NULL   |
+|check_out                   |date                                                                                                       |NULL   |
+|amount                      |int                                                                                                        |NULL   |
+|status                      |string                                                                                                     |NULL   |
+|                            |                                                                                                           |       |
+|# Detailed Table Information|                                                                                                           |       |
+|Catalog                     |spark_catalog                                                                                              |       |
+|Database                    |hotel_analytics                                                                                            |       |
+|Table                       |bookings                                                                                                   |       |
+|Created Time                |Wed Sep 30 00:27:50 IST 2026                                                                               |       |
+|Last Access                 |UNKNOWN                                                                                                    |       |
+|Created By                  |Spark 3.5.3                                                                                                |       |
+|Type                        |MANAGED                                                                                                    |       |
+|Provider                    |PARQUET                                                                                                    |       |
+|Location                    |file:/home/sri/scala-spark-30-day-practice/Day-21-Spark-Catalog/spark-warehouse/hotel_analytics.db/bookings|       |
++----------------------------+-----------------------------------------------------------------------------------------------------------+-------+
+
+
+================ HOTEL ANALYTICS ================
++-------------+---------+--------------+-------------+----------------------+
+|hotel        |city     |total_bookings|total_revenue|average_booking_amount|
++-------------+---------+--------------+-------------+----------------------+
+|Grand Palace |Hyderabad|2             |33000        |16500.0               |
+|Lake View    |Bangalore|2             |31500        |15750.0               |
+|Sea Breeze   |Chennai  |1             |16500        |16500.0               |
+|Mountain Stay|Pune     |1             |15000        |15000.0               |
+|City Inn     |Delhi    |2             |13000        |6500.0                |
++-------------+---------+--------------+-------------+----------------------+
+
+
+================ CITY SUMMARY ================
++---------+------------------+-------------+
+|city     |confirmed_bookings|total_revenue|
++---------+------------------+-------------+
+|Hyderabad|2                 |33000        |
+|Bangalore|2                 |31500        |
+|Chennai  |1                 |16500        |
+|Pune     |1                 |15000        |
+|Delhi    |2                 |13000        |
++---------+------------------+-------------+
+
+
+================ FINAL PROJECT EVIDENCE ================
+Total Booking Records       : 10
+Confirmed Bookings          : 8
+Registered Table Records    : 8
+Hotels in Analytics Summary : 5
+Cities in Analytics Summary : 5
+
+Catalog Operations Completed:
+1. Listed databases
+2. Created temporary view
+3. Queried temporary view
+4. Created analytics database
+5. Created permanent table
+6. Listed tables
+7. Queried registered table
+8. Inspected table schema
+9. Inspected table metadata
+
+DAY 21 COMPLETED SUCCESSFULLY
+[success] elapsed time: 16 s
+[0J

@@ -4,3 +4,4 @@ target/
 .idea/
 *.class
 *.jar
+Day-21-Spark-Catalog/spark-warehouse/
