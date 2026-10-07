@@ -1,0 +1,8 @@
+INFO User login
+INFO Page viewed
+ERROR Database connection failed
+INFO User login
+WARN Slow response
+ERROR Network failure
+INFO User logout
+ERROR Authentication service failed
