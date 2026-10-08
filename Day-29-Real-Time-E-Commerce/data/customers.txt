@@ -1,0 +1,4 @@
+C001,Vignesh,Student
+C002,Ravi,Professional
+C003,Asha,Student
+C004,Meera,Professional
