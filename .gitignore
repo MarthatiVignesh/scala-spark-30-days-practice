@@ -6,3 +6,4 @@ target/
 *.jar
 Day-21-Spark-Catalog/spark-warehouse/
 Day-22-Batch-Mini-Project/output/
+Day-24-Stateless-vs-Stateful-Streaming/output/
