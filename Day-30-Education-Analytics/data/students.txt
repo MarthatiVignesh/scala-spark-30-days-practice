@@ -1,0 +1,6 @@
+S001,Vignesh,Student,CSE
+S002,Ravi,Student,ECE
+S003,Asha,Student,CSE
+S004,Meera,Student,IT
+S005,Kiran,Student,ECE
+S006,Divya,Student,IT
